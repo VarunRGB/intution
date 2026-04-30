@@ -1,181 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Intuition Master PRO</title>
+function render() {
+    if (!problemDatabase || problemDatabase.length === 0) return;
     
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="data:application/manifest+json,{'display':'standalone','name':'Intuition Master','short_name':'Intuition'}">
+    const p = problemDatabase[state.idx];
+    if (!p) return; // Safety check
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        window.MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], processEscapes: true },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('Offline Mode Active!', reg))
-                .catch(err => console.log('Offline Setup Failed', err));
-            });
-        }
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #09090b; --card: #18181b; --border: #27272a; --accent: #3b82f6; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #fafafa; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
-        #prob-desc, #prob-constraints { line-height: 1.7; font-size: 0.95rem; color: #d4d4d8; }
-        #prob-desc p { margin-bottom: 1.25rem; }
-        #prob-desc ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.25rem; }
-        .option-card { background: var(--card); border: 1px solid var(--border); transition: all 0.2s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
-        .option-card:active { transform: scale(0.96); border-color: var(--accent); background: #1e1e24; }
-        .constraint-blur { filter: blur(12px); cursor: pointer; transition: all 0.4s ease; }
-        .revealed { filter: blur(0); background: rgba(0,0,0,0.2); }
-        mjx-container { color: #60a5fa !important; }
-        .section-title { display: none; }
-    </style>
-</head>
-<body>
-    <header class="px-6 py-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-950/50 backdrop-blur-md z-10">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5 text-white fill-current"></i></div>
-            <span class="font-extrabold tracking-tighter text-lg uppercase">Intuition<span class="text-blue-500">Master</span></span>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="bg-zinc-900 px-3 py-1 rounded-full border border-zinc-800 flex items-center gap-2">
-                <span class="text-[10px] font-bold text-zinc-500 uppercase">Streak</span>
-                <span id="streak-count" class="text-orange-500 font-black">0</span>
-            </div>
-            <button onclick="location.reload()" class="text-zinc-500"><i data-lucide="rotate-ccw" class="w-5 h-5"></i></button>
-        </div>
-    </header>
+    const problemTags = p.tags.map(t => t.toLowerCase());
+    let correctCat = Object.keys(CATEGORIES).find(c => CATEGORIES[c].tags.some(t => problemTags.some(pt => pt.includes(t)))) || "Logic";
+    
+    let decoys = Object.keys(CATEGORIES).filter(c => c !== correctCat).sort(() => 0.5 - Math.random()).slice(0, 3);
+    let options = [correctCat, ...decoys].sort(() => 0.5 - Math.random());
 
-    <main class="flex-1 overflow-hidden flex flex-col p-4 gap-4 relative">
-        <div id="problem-card" class="bg-zinc-900/50 border border-zinc-800 rounded-[2rem] flex-1 flex flex-col overflow-hidden shadow-2xl">
-            <div class="p-6 pb-2 flex justify-between items-center shrink-0">
-                <span id="prob-difficulty" class="text-[10px] font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-widest"></span>
-                <span id="prob-num" class="text-[10px] font-mono text-zinc-600 italic"></span>
-            </div>
-            <div id="scroll-container" class="flex-1 overflow-y-auto px-6 py-2 custom-scrollbar">
-                <h1 id="prob-title" class="text-2xl font-extrabold mb-6 leading-tight text-white">Loading Problems...</h1>
-                <div id="prob-desc"></div>
-                <div class="mt-8 pt-6 border-t border-zinc-800/50">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Constraints</span>
-                        <span id="hint-label" class="text-[10px] font-bold text-blue-500 animate-pulse">TAP TO REVEAL</span>
-                    </div>
-                    <div id="prob-constraints" class="constraint-blur p-5 rounded-2xl border border-white/5 font-mono text-sm mb-8" onclick="revealConstraints()"></div>
-                </div>
-            </div>
-        </div>
+    document.getElementById('prob-title').textContent = p.title;
+    document.getElementById('prob-desc').innerHTML = p.desc.replace(/\\\\/g, '\\');
+    document.getElementById('prob-constraints').innerHTML = p.constraints.replace(/\\\\/g, '\\');
+    document.getElementById('prob-difficulty').textContent = `Rating ${p.difficulty}`;
+    document.getElementById('prob-num').textContent = `Problem #${state.idx + 1}`;
+    document.getElementById('streak-count').textContent = state.streak;
+    
+    document.getElementById('options-grid').innerHTML = options.map(opt => `
+        <button onclick="checkAnswer('${opt}', '${correctCat}')" class="option-card rounded-2xl h-full w-full">
+            <i data-lucide="${CATEGORIES[opt].icon}" class="w-6 h-6 ${CATEGORIES[opt].color}"></i>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-zinc-400">${opt}</span>
+        </button>
+    `).join('');
+    
+    state.answered = false;
+    document.getElementById('scroll-container').scrollTop = 0;
+    document.getElementById('feedback-ui').classList.add('hidden');
+    document.getElementById('prob-constraints').classList.add('constraint-blur');
+    
+    lucide.createIcons();
 
-        <div id="feedback-ui" class="hidden absolute inset-0 bg-black/95 backdrop-blur-xl z-50 flex flex-col justify-end p-6">
-            <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-[3rem] shadow-2xl">
-                <div id="feedback-icon" class="mb-4"></div>
-                <div id="feedback-status" class="text-5xl font-black mb-2 tracking-tighter"></div>
-                <div id="feedback-subtitle" class="text-zinc-400 mb-8 text-lg"></div>
-                <div id="correct-tags" class="flex flex-wrap gap-2 mb-10"></div>
-                <button onclick="nextProblem()" class="w-full bg-white text-black font-extrabold py-5 rounded-2xl text-lg uppercase tracking-widest">Continue</button>
-            </div>
-        </div>
-    </main>
-
-    <footer class="p-4 bg-zinc-950 border-t border-zinc-800 shrink-0">
-        <div id="options-grid" class="grid grid-cols-2 gap-3 h-48"></div>
-    </footer>
-
-<script>
-    let problemDatabase = [];
-    const CATEGORIES = {
-        'DP': { icon: 'layers', color: 'text-purple-400', tags: ['dp'] },
-        'Greedy': { icon: 'zap', color: 'text-emerald-400', tags: ['greedy'] },
-        'Binary Search': { icon: 'search', color: 'text-blue-400', tags: ['binary search'] },
-        'Graphs': { icon: 'share-2', color: 'text-red-400', tags: ['graphs', 'dfs', 'trees', 'dsu'] },
-        'Math': { icon: 'sigma', color: 'text-pink-400', tags: ['math', 'number theory', 'combinatorics'] },
-        'Two Pointers': { icon: 'move-horizontal', color: 'text-orange-400', tags: ['two pointers'] },
-        'Data Structures': { icon: 'database', color: 'text-yellow-400', tags: ['data structures', 'sortings', 'strings'] },
-        'Logic': { icon: 'puzzle', color: 'text-cyan-400', tags: ['constructive algorithms', 'implementation', 'bitmasks'] }
-    };
-
-    let state = { idx: 0, streak: parseInt(localStorage.getItem('streak')) || 0, answered: false };
-
-    async function loadData() {
-        try {
-            const r = await fetch('problems_db.json');
-            problemDatabase = await r.json();
-            nextProblem();
-        } catch (e) { document.getElementById('prob-title').textContent = "Failed to load database."; }
+    // The Fix: Don't let MathJax hang the UI
+    if (window.MathJax && MathJax.typesetPromise) {
+        // Run math rendering, but don't "await" it or let it block
+        Promise.race([
+            MathJax.typesetPromise(),
+            new Promise(res => setTimeout(res, 1000)) // 1 second limit
+        ]).catch(e => console.log("Math render timed out/failed, proceeding..."));
     }
+}
 
-    function render() {
-        const p = problemDatabase[state.idx];
-        const problemTags = p.tags.map(t => t.toLowerCase());
-        let correctCat = Object.keys(CATEGORIES).find(c => CATEGORIES[c].tags.some(t => problemTags.some(pt => pt.includes(t)))) || "Logic";
-        
-        let decoys = Object.keys(CATEGORIES).filter(c => c !== correctCat).sort(() => 0.5 - Math.random()).slice(0, 3);
-        let options = [correctCat, ...decoys].sort(() => 0.5 - Math.random());
-
-        document.getElementById('prob-title').textContent = p.title;
-        document.getElementById('prob-desc').innerHTML = p.desc.replace(/\\\\/g, '\\');
-        document.getElementById('prob-constraints').innerHTML = p.constraints.replace(/\\\\/g, '\\');
-        document.getElementById('prob-difficulty').textContent = `Rating ${p.difficulty}`;
-        document.getElementById('streak-count').textContent = state.streak;
-        
-        document.getElementById('options-grid').innerHTML = options.map(opt => `
-            <button onclick="checkAnswer('${opt}', '${correctCat}')" class="option-card rounded-2xl">
-                <i data-lucide="${CATEGORIES[opt].icon}" class="w-6 h-6 ${CATEGORIES[opt].color}"></i>
-                <span class="text-[11px] font-bold uppercase tracking-widest text-zinc-400">${opt}</span>
-            </button>
-        `).join('');
-        
-        state.answered = false;
-        document.getElementById('scroll-container').scrollTop = 0;
-        document.getElementById('feedback-ui').classList.add('hidden');
-        document.getElementById('prob-constraints').classList.add('constraint-blur');
-        lucide.createIcons();
-        if (window.MathJax) MathJax.typesetPromise();
-    }
-
-    function checkAnswer(guess, correct) {
-        if (state.answered) return;
-        state.answered = true;
-        const isCorrect = guess === correct;
-        const ui = document.getElementById('feedback-ui');
-        ui.classList.remove('hidden');
-        
-        if (isCorrect) {
-            state.streak++;
-            document.getElementById('feedback-status').textContent = "CORRECT";
-            document.getElementById('feedback-status').className = "text-5xl font-black text-emerald-500";
-            document.getElementById('feedback-subtitle').textContent = `Spot on. This was a ${guess} problem.`;
-        } else {
-            state.streak = 0;
-            document.getElementById('feedback-status').textContent = "WRONG";
-            document.getElementById('feedback-status').className = "text-5xl font-black text-red-500";
-            document.getElementById('feedback-subtitle').textContent = `Not quite. It was actually ${correct}.`;
-        }
-        document.getElementById('correct-tags').innerHTML = problemDatabase[state.idx].tags.map(t => `<span class="bg-zinc-800 px-3 py-1 rounded-lg text-xs">${t}</span>`).join('');
-        localStorage.setItem('streak', state.streak);
-        document.getElementById('streak-count').textContent = state.streak;
-        lucide.createIcons();
-    }
-
-    function nextProblem() {
-        state.idx = Math.floor(Math.random() * problemDatabase.length);
-        render();
-    }
-
-    function revealConstraints() { document.getElementById('prob-constraints').classList.remove('constraint-blur'); }
-    window.onload = loadData;
-</script>
-</body>
-</html>
+function nextProblem() {
+    // Pick a truly random new index
+    let newIdx;
+    do {
+        newIdx = Math.floor(Math.random() * problemDatabase.length);
+    } while (newIdx === state.idx && problemDatabase.length > 1);
+    
+    state.idx = newIdx;
+    render();
+}
