@@ -1,1 +1,560 @@
-[]
+[
+    {
+        "title": "Add One",
+        "desc": "<div><p>You are given an integer $n$. You have to apply $m$ operations to it.</p><p>In a single operation, you <span class=\"tex-font-style-bf\">must</span> replace every digit $d$ of the number with the decimal representation of integer $d + 1$. For example, $1912$ becomes $21023$ after applying the operation once.</p><p>You have to find the length of $n$ after applying $m$ operations. Since the answer can be very large, print it modulo $10^9+7$.</p></div>",
+        "tags": [
+            "dp",
+            "matrices"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer $t$ ($1 \\le t \\le 2 \\cdot 10^5$) — the number of test cases.</p><p>The only line of each test case contains two integers $n$ ($1 \\le n \\le 10^9$) and $m$ ($1 \\le m \\le 2 \\cdot 10^5$) — the initial number and the number of operations. </p></div>"
+    },
+    {
+        "title": "Numbers",
+        "desc": "<div><p>Furik loves writing all sorts of problems, especially such that he can't solve himself. You've got one of his problems, the one Furik gave to Rubik. And Rubik asks you to solve it.</p><p>There is integer <span class=\"tex-span\"><i>n</i></span> and array <span class=\"tex-span\"><i>a</i></span>, consisting of ten integers, indexed by numbers from 0 to 9. Your task is to count the number of positive integers with the following properties:</p><ul> <li> the number's length does not exceed <span class=\"tex-span\"><i>n</i></span>; </li><li> the number doesn't have leading zeroes; </li><li> digit <span class=\"tex-span\"><i>i</i></span> <span class=\"tex-span\">(0 ≤ <i>i</i> ≤ 9)</span> occurs in the number at least <span class=\"tex-span\"><i>a</i>[<i>i</i>]</span> times. </li></ul></div>",
+        "tags": [
+            "combinatorics",
+            "dp"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains integer <span class=\"tex-span\"><i>n</i></span> <span class=\"tex-span\">(1 ≤ <i>n</i> ≤ 100)</span>. The next line contains 10 integers <span class=\"tex-span\"><i>a</i>[0]</span>, <span class=\"tex-span\"><i>a</i>[1]</span>, <span class=\"tex-span\">...</span>, <span class=\"tex-span\"><i>a</i>[9]</span> <span class=\"tex-span\">(0 ≤ <i>a</i>[<i>i</i>] ≤ 100)</span> — elements of array <span class=\"tex-span\"><i>a</i></span>. The numbers are separated by spaces.</p></div>"
+    },
+    {
+        "title": "Inna and Huge Candy Matrix",
+        "desc": "<div><p>Inna and Dima decided to surprise Sereja. They brought a really huge candy matrix, it's big even for Sereja! Let's number the rows of the giant matrix from <span class=\"tex-span\">1</span> to <span class=\"tex-span\"><i>n</i></span> from top to bottom and the columns — from <span class=\"tex-span\">1</span> to <span class=\"tex-span\"><i>m</i></span>, from left to right. We'll represent the cell on the intersection of the <span class=\"tex-span\"><i>i</i></span>-th row and <span class=\"tex-span\"><i>j</i></span>-th column as <span class=\"tex-span\">(<i>i</i>, <i>j</i>)</span>. Just as is expected, some cells of the giant candy matrix contain candies. Overall the matrix has <span class=\"tex-span\"><i>p</i></span> candies: the <span class=\"tex-span\"><i>k</i></span>-th candy is at cell <span class=\"tex-span\">(<i>x</i><sub class=\"lower-index\"><i>k</i></sub>, <i>y</i><sub class=\"lower-index\"><i>k</i></sub>)</span>.</p><p>The time moved closer to dinner and Inna was already going to eat <span class=\"tex-span\"><i>p</i></span> of her favourite sweets from the matrix, when suddenly Sereja (for the reason he didn't share with anyone) rotated the matrix <span class=\"tex-span\"><i>x</i></span> times clockwise by 90 degrees. Then he performed the horizontal rotate of the matrix <span class=\"tex-span\"><i>y</i></span> times. And then he rotated the matrix <span class=\"tex-span\"><i>z</i></span> times counterclockwise by 90 degrees. The figure below shows how the rotates of the matrix looks like.</p><center> <img class=\"tex-graphics\" src=\"https://espresso.codeforces.com/e7568007666c15d51c557727576c388a0017fbed.png\" style=\"max-width: 100.0%;max-height: 100.0%;\"/> </center><p>Inna got really upset, but Duma suddenly understood two things: the candies didn't get damaged and he remembered which cells contained Inna's favourite sweets before Sereja's strange actions. Help guys to find the new coordinates in the candy matrix after the transformation Sereja made!</p></div>",
+        "tags": [
+            "implementation",
+            "math"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of the input contains fix integers <span class=\"tex-span\"><i>n</i></span>, <span class=\"tex-span\"><i>m</i></span>, <span class=\"tex-span\"><i>x</i></span>, <span class=\"tex-span\"><i>y</i></span>, <span class=\"tex-span\"><i>z</i></span>, <span class=\"tex-span\"><i>p</i></span> <span class=\"tex-span\">(1 ≤ <i>n</i>, <i>m</i> ≤ 10<sup class=\"upper-index\">9</sup>; 0 ≤ <i>x</i>, <i>y</i>, <i>z</i> ≤ 10<sup class=\"upper-index\">9</sup>; 1 ≤ <i>p</i> ≤ 10<sup class=\"upper-index\">5</sup>)</span>.</p><p>Each of the following <span class=\"tex-span\"><i>p</i></span> lines contains two integers <span class=\"tex-span\"><i>x</i><sub class=\"lower-index\"><i>k</i></sub></span>, <span class=\"tex-span\"><i>y</i><sub class=\"lower-index\"><i>k</i></sub></span> <span class=\"tex-span\">(1 ≤ <i>x</i><sub class=\"lower-index\"><i>k</i></sub> ≤ <i>n</i>; 1 ≤ <i>y</i><sub class=\"lower-index\"><i>k</i></sub> ≤ <i>m</i>)</span> — the initial coordinates of the <span class=\"tex-span\"><i>k</i></span>-th candy. Two candies can lie on the same cell.</p></div>"
+    },
+    {
+        "title": "Graph and Graph",
+        "desc": "<div><p>You are given two connected undirected graphs with the same number of vertices. In both graphs, there is a token located at some vertex. In the first graph, the token is initially at vertex $s_1$, and in the second graph, the token is initially at vertex $s_2$. The following operation is repeated an <span class=\"tex-font-style-bf\">infinite</span> number of times:</p><ul> <li> Let the token currently be at vertex $v_1$ in the first graph and at vertex $v_2$ in the second graph. </li><li> A vertex $u_1$, adjacent to $v_1$, is chosen in the first graph. </li><li> A vertex $u_2$, adjacent to $v_2$, is chosen in the second graph. </li><li> The tokens are moved to the chosen vertices: in the first graph, the token moves from $v_1$ to $u_1$, and in the second graph, from $v_2$ to $u_2$. </li><li> The cost of such an operation is equal to $|u_1 - u_2|$. </li></ul><p>Determine the minimum possible total cost of all operations or report that this value will be infinitely large.</p></div>",
+        "tags": [
+            "data structures",
+            "graphs",
+            "greedy",
+            "shortest paths"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>Each test consists of multiple test cases. The first line contains one integer $t$ ($1 \\le t \\le 500$) — the number of test cases. The description of the test cases follows.</p><p>The first line of each test case contains three integers $n$, $s_1$, and $s_2$ ($2 \\le n \\le 1000$, $1 \\le s_1, s_2 \\le n$) — the number of vertices in each graph, the number of the vertex in the first graph where the token is initially located, and the number of the vertex in the second graph where the token is initially located.</p><p>The second line of each test case contains one integer $m_1$ ($1 \\le m_1 \\le 1000$) — the number of edges in the first graph.</p><p>The $i$-th of the following $m_1$ lines contains two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le n$, $a_i \\ne b_i$) — the numbers of the endpoints of the $i$-th edge in the first graph.</p><p>The next line of each test case contains one integer $m_2$ ($1 \\le m_2 \\le 1000$) — the number of edges in the second graph.</p><p>The $j$-th of the following $m_2$ lines contains two integers $c_j$ and $d_j$ ($1 \\le c_j, d_j \\le n$, $c_j \\ne d_j$) — the numbers of the endpoints of the $j$-th edge in the second graph.</p><p>It is guaranteed that the sum of $n$, the sum of $m_1$, and the sum of $m_2$ over all test cases do not exceed $1000$.</p><p>It is guaranteed that both graphs are connected.</p></div>"
+    },
+    {
+        "title": "Motarack's Birthday",
+        "desc": "<div><p>Dark is going to attend Motarack's birthday. Dark decided that the gift he is going to give to Motarack is an array $a$ of $n$ non-negative integers.</p><p>Dark created that array $1000$ years ago, so some elements in that array disappeared. Dark knows that Motarack hates to see an array that has two adjacent elements with a high absolute difference between them. He doesn't have much time so he wants to choose an integer $k$ ($0 \\leq k \\leq 10^{9}$) and replaces all missing elements in the array $a$ with $k$.</p><p>Let $m$ be the maximum absolute difference between all adjacent elements (i.e. the maximum value of $|a_i - a_{i+1}|$ for all $1 \\leq i \\leq n - 1$) in the array $a$ after Dark replaces all missing elements with $k$.</p><p>Dark should choose an integer $k$ so that $m$ is minimized. Can you help him?</p></div>",
+        "tags": [
+            "binary search",
+            "greedy",
+            "ternary search"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The input consists of multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$)  — the number of test cases. The description of the test cases follows.</p><p>The first line of each test case contains one integer $n$ ($2 \\leq n \\leq 10^{5}$) — the size of the array $a$.</p><p>The second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-1 \\leq a_i \\leq 10 ^ {9}$). If $a_i = -1$, then the $i$-th integer is missing. It is guaranteed that at least one integer is missing in every test case.</p><p>It is guaranteed, that the sum of $n$ for all test cases does not exceed $4 \\cdot 10 ^ {5}$.</p></div>"
+    },
+    {
+        "title": "Cow and Fields",
+        "desc": "<div><p>Bessie is out grazing on the farm, which consists of $n$ fields connected by $m$ bidirectional roads. She is currently at field $1$, and will return to her home at field $n$ at the end of the day.</p><p>The Cowfederation of Barns has ordered Farmer John to install one extra bidirectional road. The farm has $k$ special fields and he has decided to install the road between two different special fields. He may add the road between two special fields that already had a road directly connecting them.</p><p>After the road is added, Bessie will return home on the shortest path from field $1$ to field $n$. Since Bessie needs more exercise, Farmer John must <span class=\"tex-font-style-bf\">maximize</span> the length of this shortest path. Help him!</p></div>",
+        "tags": [
+            "binary search",
+            "data structures",
+            "dfs and similar",
+            "graphs",
+            "greedy",
+            "shortest paths",
+            "sortings"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains integers $n$, $m$, and $k$ ($2 \\le n \\le 2 \\cdot 10^5$, $n-1 \\le m \\le 2 \\cdot 10^5$, $2 \\le k \\le n$)  — the number of fields on the farm, the number of roads, and the number of special fields. </p><p>The second line contains $k$ integers $a_1, a_2, \\ldots, a_k$ ($1 \\le a_i \\le n$)  — the special fields. All $a_i$ are distinct.</p><p>The $i$-th of the following $m$ lines contains integers $x_i$ and $y_i$ ($1 \\le x_i, y_i \\le n$, $x_i \\ne y_i$), representing a bidirectional road between fields $x_i$ and $y_i$. </p><p>It is guaranteed that one can reach any field from every other field. It is also guaranteed that for any pair of fields there is at most one road connecting them.</p></div>"
+    },
+    {
+        "title": "Rebus",
+        "desc": "<div><p>You are given a rebus of form <span class=\"tex-font-style-tt\">? + ? - ? + ? = n</span>, consisting of only question marks, separated by arithmetic operation '<span class=\"tex-font-style-tt\">+</span>' and '<span class=\"tex-font-style-tt\">-</span>', equality and positive integer <span class=\"tex-span\"><i>n</i></span>. The goal is to replace each question mark with some positive integer from <span class=\"tex-span\">1</span> to <span class=\"tex-span\"><i>n</i></span>, such that equality holds.</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "expression parsing",
+            "greedy",
+            "math"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The only line of the input contains a rebus. It's guaranteed that it contains no more than <span class=\"tex-span\">100</span> question marks, integer <span class=\"tex-span\"><i>n</i></span> is positive and doesn't exceed <span class=\"tex-span\">1 000 000</span>, all letters and integers are separated by spaces, arithmetic operations are located only between question marks.</p></div>"
+    },
+    {
+        "title": "Harmonious Graph",
+        "desc": "<div><p>You're given an undirected graph with $n$ nodes and $m$ edges. Nodes are numbered from $1$ to $n$.</p><p>The graph is considered <span class=\"tex-font-style-it\">harmonious</span> if and only if the following property holds:</p><ul> <li> For every triple of integers $(l, m, r)$ such that $1 \\le l  \\lt  m  \\lt  r \\le n$, if there exists a <span class=\"tex-font-style-bf\">path</span> going from node $l$ to node $r$, then there exists a <span class=\"tex-font-style-bf\">path</span> going from node $l$ to node $m$. </li></ul><p>In other words, in a harmonious graph, if from a node $l$ we can reach a node $r$ through edges ($l  \\lt  r$), then we should able to reach nodes $(l+1), (l+2), \\ldots, (r-1)$ too.</p><p>What is the minimum number of edges we need to add to make the graph harmonious? </p></div>",
+        "tags": [
+            "constructive algorithms",
+            "dfs and similar",
+            "dsu",
+            "graphs",
+            "greedy",
+            "sortings"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains two integers $n$ and $m$ ($3 \\le n \\le 200\\ 000$ and $1 \\le m \\le 200\\ 000$).</p><p>The $i$-th of the next $m$ lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\neq v_i$), that mean that there's an edge between nodes $u$ and $v$.</p><p>It is guaranteed that the given graph is simple (there is no self-loop, and there is at most one edge between every pair of nodes).</p></div>"
+    },
+    {
+        "title": "Palindromic Paths",
+        "desc": "<div><p>You are given a matrix with $n$ rows (numbered from $1$ to $n$) and $m$ columns (numbered from $1$ to $m$). A number $a_{i, j}$ is written in the cell belonging to the $i$-th row and the $j$-th column, each number is either $0$ or $1$.</p><p>A chip is initially in the cell $(1, 1)$, and it will be moved to the cell $(n, m)$. During each move, it either moves to the next cell in the current row, or in the current column (if the current cell is $(x, y)$, then after the move it can be either $(x + 1, y)$ or $(x, y + 1)$). The chip cannot leave the matrix.</p><p>Consider each path of the chip from $(1, 1)$ to $(n, m)$. A path is called <span class=\"tex-font-style-it\">palindromic</span> if the number in the first cell is equal to the number in the last cell, the number in the second cell is equal to the number in the second-to-last cell, and so on.</p><p>Your goal is to change the values in the minimum number of cells so that <span class=\"tex-font-style-bf\">every</span> path is <span class=\"tex-font-style-it\">palindromic</span>.</p></div>",
+        "tags": [
+            "greedy",
+            "math"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains one integer $t$ ($1 \\le t \\le 200$) — the number of test cases.</p><p>The first line of each test case contains two integers $n$ and $m$ ($2 \\le n, m \\le 30$) — the dimensions of the matrix.</p><p>Then $n$ lines follow, the $i$-th line contains $m$ integers $a_{i, 1}$, $a_{i, 2}$, ..., $a_{i, m}$ ($0 \\le a_{i, j} \\le 1$).</p></div>"
+    },
+    {
+        "title": "Flea",
+        "desc": "<div><p>It is known that fleas in Berland can jump only vertically and horizontally, and the length of the jump is always equal to <span class=\"tex-span\"><i>s</i></span> centimeters. A flea has found herself at the center of some cell of the checked board of the size <span class=\"tex-span\"><i>n</i> × <i>m</i></span> centimeters (each cell is <span class=\"tex-span\">1 × 1</span> centimeters). She can jump as she wishes for an arbitrary number of times, she can even visit a cell more than once. The only restriction is that she cannot jump out of the board.</p><p>The flea can count the amount of cells that she can reach from the starting position <span class=\"tex-span\">(<i>x</i>, <i>y</i>)</span>. Let's denote this amount by <span class=\"tex-span\"><i>d</i><sub class=\"lower-index\"><i>x</i>, <i>y</i></sub></span>. Your task is to find the number of such starting positions <span class=\"tex-span\">(<i>x</i>, <i>y</i>)</span>, which have the maximum possible value of <span class=\"tex-span\"><i>d</i><sub class=\"lower-index\"><i>x</i>, <i>y</i></sub></span>.</p></div>",
+        "tags": [
+            "math"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains three integers <span class=\"tex-span\"><i>n</i></span>, <span class=\"tex-span\"><i>m</i></span>, <span class=\"tex-span\"><i>s</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i>, <i>m</i>, <i>s</i> ≤ 10<sup class=\"upper-index\">6</sup></span>) — length of the board, width of the board and length of the flea's jump.</p></div>"
+    },
+    {
+        "title": "Yet Another Array Partitioning Task",
+        "desc": "<div><p>An array $b$ is called to be a <span class=\"tex-font-style-it\">subarray</span> of $a$ if it forms a continuous subsequence of $a$, that is, if it is equal to $a_l$, $a_{l + 1}$, $\\ldots$, $a_r$ for some $l, r$.</p><p>Suppose $m$ is some known constant. For any array, having $m$ or more elements, let's define it's <span class=\"tex-font-style-it\">beauty</span> as the sum of $m$ largest elements of that array. For example: </p><ul> <li> For array $x = [4, 3, 1, 5, 2]$ and $m = 3$, the $3$ largest elements of $x$ are $5$, $4$ and $3$, so the beauty of $x$ is $5 + 4 + 3 = 12$.</li><li> For array $x = [10, 10, 10]$ and $m = 2$, the beauty of $x$ is $10 + 10 = 20$.</li></ul><p>You are given an array $a_1, a_2, \\ldots, a_n$, the value of the said constant $m$ and an integer $k$. Your need to split the array $a$ into exactly $k$ subarrays such that:</p><ul> <li> Each element from $a$ belongs to exactly one subarray.</li><li> Each subarray has at least $m$ elements.</li><li> The sum of all beauties of $k$ subarrays is maximum possible.</li></ul></div>",
+        "tags": [
+            "constructive algorithms",
+            "greedy",
+            "sortings"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains three integers $n$, $m$ and $k$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le m$, $2 \\le k$, $m \\cdot k \\le n$) — the number of elements in $a$, the constant $m$ in the definition of beauty and the number of subarrays to split to.</p><p>The second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-10^9 \\le a_i \\le 10^9$).</p></div>"
+    },
+    {
+        "title": "STL",
+        "desc": "<div><p>Vasya used to be an accountant before the war began and he is one of the few who knows how to operate a computer, so he was assigned as the programmer.</p><p>We all know that programs often store sets of integers. For example, if we have a problem about a weighted directed graph, its edge can be represented by three integers: the number of the starting vertex, the number of the final vertex and the edge's weight. So, as Vasya was trying to represent characteristics of a recently invented robot in his program, he faced the following problem.</p><p>Vasya is not a programmer, so he asked his friend Gena, what the convenient way to store <span class=\"tex-span\"><i>n</i></span> integers is. Gena used to code in language X-<span class=\"tex-font-style-it\"></span>- and so he can use only the types that occur in this language. Let's define, what a \"type\" is in language X-<span class=\"tex-font-style-it\"></span>-:</p><ul> <li> First, a type is a string \"<span class=\"tex-font-style-tt\">int</span>\". </li><li> Second, a type is a string that starts with \"<span class=\"tex-font-style-tt\">pair</span>\", then followed by angle brackets listing <span class=\"tex-font-style-bf\">exactly two</span> comma-separated other types of language X-<span class=\"tex-font-style-it\"></span>-. This record contains no spaces. </li><li> No other strings can be regarded as types. </li></ul><p>More formally: <span class=\"tex-font-style-tt\">type</span> := <span class=\"tex-font-style-tt\">int</span> | <span class=\"tex-font-style-tt\">pair&lt;type,type&gt;</span>. For example, Gena uses the following type for graph edges: <span class=\"tex-font-style-tt\">pair&lt;int,pair&lt;int,int&gt;<span class=\"tex-font-style-it\"></span>&gt;</span>.</p><p>Gena was pleased to help Vasya, he dictated to Vasya a type of language X-<span class=\"tex-font-style-it\"></span>-, that stores <span class=\"tex-span\"><i>n</i></span> integers. Unfortunately, Gena was in a hurry, so he omitted the punctuation. Now Gena has already left and Vasya can't find the correct punctuation, resulting in a type of language X-<span class=\"tex-font-style-it\"></span>-, however hard he tries.</p><p>Help Vasya and add the punctuation marks so as to receive the valid type of language X-<span class=\"tex-font-style-it\"></span>-. Otherwise say that the task is impossible to perform.</p></div>",
+        "tags": [
+            "dfs and similar"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer <span class=\"tex-span\"><i>n</i></span> <span class=\"tex-span\">(1 ≤ <i>n</i> ≤ 10<sup class=\"upper-index\">5</sup>)</span>, showing how many numbers the type dictated by Gena contains.</p><p>The second line contains space-separated words, said by Gena. Each of them is either \"<span class=\"tex-font-style-tt\">pair</span>\" or \"<span class=\"tex-font-style-tt\">int</span>\" (without the quotes).</p><p>It is guaranteed that the total number of words does not exceed <span class=\"tex-span\">10<sup class=\"upper-index\">5</sup></span> and that among all the words that Gena said, there are exactly <span class=\"tex-span\"><i>n</i></span> words \"<span class=\"tex-font-style-tt\">int</span>\".</p></div>"
+    },
+    {
+        "title": "Neo's Escape",
+        "desc": "<div><p> </p><p>Neo wants to escape from the Matrix. In front of him are $n$ buttons arranged in a row. Each button has a weight given by an integer: $a_1, a_2, \\ldots, a_n$.</p><p>Neo is immobilized, but he can create and move clones. This means he can perform an unlimited number of actions of the following two types in any order: </p><ol> <li> Create a clone in front of a specific button. </li><li> Move an existing clone one position to the left or right. </li></ol><p>As soon as a clone is in front of another button that has not yet been pressed—regardless of whether he was created or moved — he <span class=\"tex-font-style-bf\">immediately</span> presses it. If the button has already been pressed, a clone does nothing — buttons can only be pressed once.</p><p>For Neo to escape, he needs to press <span class=\"tex-font-style-bf\">all</span> the buttons in such an order that the sequence of their weights is <span class=\"tex-font-style-bf\">non-increasing</span> — that is, if $b_1, b_2, \\ldots, b_n$ are the weights of the buttons in the order they are pressed, then it must hold that $b_1 \\geq b_2 \\geq \\cdots \\geq b_n$.</p><p>Your task is to determine the minimum number of clones that Neo needs to create in order to press all the buttons in a valid order.</p></div>",
+        "tags": [
+            "binary search",
+            "brute force",
+            "data structures",
+            "dp",
+            "dsu",
+            "graphs",
+            "greedy",
+            "implementation"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>Each test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows. </p><p>The first line of each test case contains one integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the number of buttons.</p><p>The second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 10^9$) — the weights of the buttons.</p><p>It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$. </p></div>"
+    },
+    {
+        "title": "Modulo Sum",
+        "desc": "<div><p>You are given a sequence of numbers <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub>, <i>a</i><sub class=\"lower-index\">2</sub>, ..., <i>a</i><sub class=\"lower-index\"><i>n</i></sub></span>, and a number <span class=\"tex-span\"><i>m</i></span>.</p><p>Check if it is possible to choose a non-empty subsequence <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i><sub class=\"lower-index\"><i>j</i></sub></sub></span> such that the sum of numbers in this subsequence is divisible by <span class=\"tex-span\"><i>m</i></span>.</p></div>",
+        "tags": [
+            "combinatorics",
+            "data structures",
+            "dp",
+            "two pointers"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains two numbers, <span class=\"tex-span\"><i>n</i></span> and <span class=\"tex-span\"><i>m</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> ≤ 10<sup class=\"upper-index\">6</sup></span>, <span class=\"tex-span\">2 ≤ <i>m</i> ≤ 10<sup class=\"upper-index\">3</sup></span>) — the size of the original sequence and the number such that sum should be divisible by it.</p><p>The second line contains <span class=\"tex-span\"><i>n</i></span> integers <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub>, <i>a</i><sub class=\"lower-index\">2</sub>, ..., <i>a</i><sub class=\"lower-index\"><i>n</i></sub></span> (<span class=\"tex-span\">0 ≤ <i>a</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 10<sup class=\"upper-index\">9</sup></span>).</p></div>"
+    },
+    {
+        "title": "Black-and-White Cube",
+        "desc": "<div><p>You are given a cube of size <span class=\"tex-span\"><i>k</i> × <i>k</i> × <i>k</i></span>, which consists of unit cubes. Two unit cubes are considered neighbouring, if they have common face.</p><p>Your task is to paint each of <span class=\"tex-span\"><i>k</i><sup class=\"upper-index\">3</sup></span> unit cubes one of two colours (black or white), so that the following conditions must be satisfied:</p><ul> <li> each white cube has exactly 2 neighbouring cubes of white color; </li><li> each black cube has exactly 2 neighbouring cubes of black color. </li></ul></div>",
+        "tags": [
+            "combinatorics",
+            "constructive algorithms"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains integer <span class=\"tex-span\"><i>k</i></span> <span class=\"tex-span\">(1 ≤ <i>k</i> ≤ 100)</span>, which is size of the cube.</p></div>"
+    },
+    {
+        "title": "Chocolate Bunny",
+        "desc": "<div><p><span class=\"tex-font-style-bf\">This is an interactive problem.</span></p><p>We hid from you a permutation $p$ of length $n$, consisting of the elements from $1$ to $n$. You want to guess it. To do that, you can give us 2 different indices $i$ and $j$, and we will reply with $p_{i} \\bmod p_{j}$ (remainder of division $p_{i}$ by $p_{j}$).</p><p>We have enough patience to answer at most $2 \\cdot n$ queries, so you should fit in this constraint. Can you do it?</p><p>As a reminder, a permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "interactive",
+            "math",
+            "two pointers"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The only line of the input contains a single integer $n$ ($1 \\le n \\le 10^4$) — length of the permutation.</p></div>"
+    },
+    {
+        "title": "Seating Arrangements (hard version) ",
+        "desc": "<div><p><span class=\"tex-font-style-bf\">It is the hard version of the problem. The only difference is that in this version $1 \\le n \\le 300$.</span></p><p>In the cinema seats can be represented as the table with $n$ rows and $m$ columns. The rows are numbered with integers from $1$ to $n$. The seats in each row are numbered with consecutive integers from left to right: in the $k$-th row from $m (k - 1) + 1$ to $m k$ for all rows $1 \\le k \\le n$.</p><center> <table class=\"tex-tabular\"><tbody><tr><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$2$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\cdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$m - 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$m$</td></tr><tr><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$m + 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$m + 2$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\cdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$2 m - 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$2 m$</td></tr><tr><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$2m + 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$2m + 2$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\cdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$3 m - 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$3 m$</td></tr><tr><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\vdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\vdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\ddots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\vdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\vdots$</td></tr><tr><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$m (n - 1) + 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$m (n - 1) + 2$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$\\cdots$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$n m - 1$</td><td class=\"tex-tabular-border-left tex-tabular-text-align-center tex-tabular-border-right tex-tabular-border-top tex-tabular-border-bottom\">$n m$</td></tr></tbody></table> <span class=\"tex-font-size-small\">The table with seats indices</span> </center><p>There are $nm$ people who want to go to the cinema to watch a new film. They are numbered with integers from $1$ to $nm$. You should give exactly one seat to each person.</p><p>It is known, that in this cinema as lower seat index you have as better you can see everything happening on the screen. $i$-th person has the level of sight $a_i$. Let's define $s_i$ as the seat index, that will be given to $i$-th person. You want to give better places for people with lower sight levels, so for any two people $i$, $j$ such that $a_i  \\lt  a_j$ it should be satisfied that $s_i  \\lt  s_j$.</p><p>After you will give seats to all people they will start coming to their seats. In the order from $1$ to $nm$, each person will enter the hall and sit in their seat. To get to their place, the person will go to their seat's row and start moving from the first seat in this row to theirs from left to right. While moving some places will be free, some will be occupied with people already seated. The <span class=\"tex-font-style-bf\">inconvenience</span> of the person is equal to the number of occupied seats he or she will go through.</p><p>Let's consider an example: $m = 5$, the person has the seat $4$ in the first row, the seats $1$, $3$, $5$ in the first row are already occupied, the seats $2$ and $4$ are free. The inconvenience of this person will be $2$, because he will go through occupied seats $1$ and $3$.</p><p>Find the minimal total inconvenience (the sum of inconveniences of all people), that is possible to have by giving places for all people (all conditions should be satisfied).</p></div>",
+        "tags": [
+            "data structures",
+            "greedy",
+            "implementation",
+            "sortings",
+            "two pointers"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The input consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 100$) — the number of test cases. Description of the test cases follows.</p><p>The first line of each test case contains two integers $n$ and $m$ ($1 \\le n, m \\le 300$) — the number of rows and places in each row respectively.</p><p>The second line of each test case contains $n \\cdot m$ integers $a_1, a_2, \\ldots, a_{n \\cdot m}$ ($1 \\le a_i \\le 10^9$), where $a_i$ is the sight level of $i$-th person.</p><p>It's guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $10^5$.</p></div>"
+    },
+    {
+        "title": "Game with Coins",
+        "desc": "<div><p>Two pirates Polycarpus and Vasily play a very interesting game. They have <span class=\"tex-span\"><i>n</i></span> chests with coins, the chests are numbered with integers from 1 to <span class=\"tex-span\"><i>n</i></span>. Chest number <span class=\"tex-span\"><i>i</i></span> has <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i></sub></span> coins. </p><p>Polycarpus and Vasily move in turns. Polycarpus moves first. During a move a player is allowed to choose a positive integer <span class=\"tex-span\"><i>x</i></span> <span class=\"tex-span\">(2·<i>x</i> + 1 ≤ <i>n</i>)</span> and take a coin from each chest with numbers <span class=\"tex-span\"><i>x</i></span>, <span class=\"tex-span\">2·<i>x</i></span>, <span class=\"tex-span\">2·<i>x</i> + 1</span>. It may turn out that some chest has no coins, in this case the player doesn't take a coin from this chest. The game finishes when all chests get emptied.</p><p>Polycarpus isn't a greedy scrooge. Polycarpys is a lazy slob. So he wonders in what minimum number of moves the game can finish. Help Polycarpus, determine the minimum number of moves in which the game can finish. Note that Polycarpus counts not only his moves, he also counts Vasily's moves.</p></div>",
+        "tags": [
+            "greedy"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer <span class=\"tex-span\"><i>n</i></span> <span class=\"tex-span\">(1 ≤ <i>n</i> ≤ 100)</span> — the number of chests with coins. The second line contains a sequence of space-separated integers: <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub>, <i>a</i><sub class=\"lower-index\">2</sub>, ..., <i>a</i><sub class=\"lower-index\"><i>n</i></sub></span> <span class=\"tex-span\">(1 ≤ <i>a</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 1000)</span>, where <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i></sub></span> is the number of coins in the chest number <span class=\"tex-span\"><i>i</i></span> at the beginning of the game.</p></div>"
+    },
+    {
+        "title": "Rudolf and CodeVid-23",
+        "desc": "<div><p>A new virus called \"CodeVid-23\" has spread among programmers. Rudolf, being a programmer, was not able to avoid it.</p><p>There are $n$ symptoms numbered from $1$ to $n$ that can appear when infected. Initially, Rudolf has some of them. He went to the pharmacy and bought $m$ medicines.</p><p>For each medicine, the number of days it needs to be taken is known, and the set of symptoms it removes. Unfortunately, medicines often have side effects. Therefore, for each medicine, the set of symptoms that appear when taking it is also known.</p><p>After reading the instructions, Rudolf realized that taking more than one medicine at a time is very unhealthy.</p><p>Rudolph wants to be healed as soon as possible. Therefore, he asks you to calculate the minimum number of days to remove all symptoms, or to say that it is impossible.</p></div>",
+        "tags": [
+            "bitmasks",
+            "dp",
+            "graphs",
+            "greedy",
+            "shortest paths"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer $t$ $(1 \\le t \\le 100)$ — the number of test cases.</p><p>Then follow the descriptions of the test cases.</p><p>The first line of each test case contains two integers $n, m$ $(1 \\le n \\le 10, 1 \\le m \\le 10^3)$ — the number of symptoms and medicines, respectively.</p><p>The second line of each test case contains a string of length $n$ consisting of the characters $0$ and $1$ — the description of Rudolf's symptoms. If the $i$-th character of the string is $1$, Rudolf has the $i$-th symptom, otherwise he does not.</p><p>Then follow $3 \\cdot m$ lines — the description of the medicines.</p><p>The first line of each medicine description contains an integer $d$ $(1 \\le d \\le 10^3)$ — the number of days the medicine needs to be taken.</p><p>The next two lines of the medicine description contain two strings of length $n$, consisting of the characters $0$ and $1$ — the description of the symptoms it removes and the description of the side effects.</p><p>In the first of the two lines, $1$ at position $i$ means that the medicine removes the $i$-th symptom, and $0$ otherwise.</p><p>In the second of the two lines, $1$ at position $i$ means that the $i$-th symptom appears after taking the medicine, and $0$ otherwise.</p><p>Different medicines can have the same sets of symptoms and side effects. If a medicine relieves a certain symptom, it will not be among the side effects.</p><p>The sum of $m$ over all test cases does not exceed $10^3$.</p></div>"
+    },
+    {
+        "title": "Two Heaps",
+        "desc": "<div><p>Valera has <span class=\"tex-span\">2·<i>n</i></span> cubes, each cube contains an integer from <span class=\"tex-span\">10</span> to <span class=\"tex-span\">99</span>. He arbitrarily chooses <span class=\"tex-span\"><i>n</i></span> cubes and puts them in the first heap. The remaining cubes form the second heap. </p><p>Valera decided to play with cubes. During the game he takes a cube from the first heap and writes down the number it has. Then he takes a cube from the second heap and write out its two digits near two digits he had written (to the right of them). In the end he obtained a single fourdigit integer — the first two digits of it is written on the cube from the first heap, and the second two digits of it is written on the second cube from the second heap.</p><p>Valera knows arithmetic very well. So, he can easily count the number of distinct fourdigit numbers he can get in the game. The other question is: how to split cubes into two heaps so that this number (the number of distinct fourdigit integers Valera can get) will be as large as possible?</p></div>",
+        "tags": [
+            "combinatorics",
+            "constructive algorithms",
+            "greedy",
+            "implementation",
+            "math",
+            "sortings"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains integer <span class=\"tex-span\"><i>n</i></span> <span class=\"tex-span\">(1 ≤ <i>n</i> ≤ 100)</span>. The second line contains <span class=\"tex-span\">2·<i>n</i></span> space-separated integers <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i></sub></span> <span class=\"tex-span\">(10 ≤ <i>a</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 99)</span>, denoting the numbers on the cubes.</p></div>"
+    },
+    {
+        "title": "Mister B and PR Shifts",
+        "desc": "<div><p>Some time ago Mister B detected a strange signal from the space, which he started to study.</p><p>After some transformation the signal turned out to be a permutation <span class=\"tex-span\"><i>p</i></span> of length <span class=\"tex-span\"><i>n</i></span> or its cyclic shift. For the further investigation Mister B need some basis, that's why he decided to choose cyclic shift of this permutation which has the minimum possible deviation.</p><p>Let's define the deviation of a permutation <span class=\"tex-span\"><i>p</i></span> as <img align=\"middle\" class=\"tex-formula\" src=\"https://espresso.codeforces.com/ce3e50250ca9866e45ca8785d856c8dfc1ba1445.png\" style=\"max-width: 100.0%;max-height: 100.0%;\"/>.</p><p>Find a cyclic shift of permutation <span class=\"tex-span\"><i>p</i></span> with minimum possible deviation. If there are multiple solutions, print any of them.</p><p>Let's denote id <span class=\"tex-span\"><i>k</i></span> (<span class=\"tex-span\">0 ≤ <i>k</i> &lt; <i>n</i></span>) of a cyclic shift of permutation <span class=\"tex-span\"><i>p</i></span> as the number of right shifts needed to reach this shift, for example:</p><ul> <li> <span class=\"tex-span\"><i>k</i> = 0</span>: shift <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\">1</sub>, <i>p</i><sub class=\"lower-index\">2</sub>, ... <i>p</i><sub class=\"lower-index\"><i>n</i></sub></span>, </li><li> <span class=\"tex-span\"><i>k</i> = 1</span>: shift <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\"><i>n</i></sub>, <i>p</i><sub class=\"lower-index\">1</sub>, ... <i>p</i><sub class=\"lower-index\"><i>n</i> - 1</sub></span>, </li><li> ..., </li><li> <span class=\"tex-span\"><i>k</i> = <i>n</i> - 1</span>: shift <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\">2</sub>, <i>p</i><sub class=\"lower-index\">3</sub>, ... <i>p</i><sub class=\"lower-index\"><i>n</i></sub>, <i>p</i><sub class=\"lower-index\">1</sub></span>. </li></ul></div>",
+        "tags": [
+            "data structures",
+            "implementation",
+            "math"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>First line contains single integer <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">2 ≤ <i>n</i> ≤ 10<sup class=\"upper-index\">6</sup></span>) — the length of the permutation.</p><p>The second line contains <span class=\"tex-span\"><i>n</i></span> space-separated integers <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\">1</sub>, <i>p</i><sub class=\"lower-index\">2</sub>, ..., <i>p</i><sub class=\"lower-index\"><i>n</i></sub></span> (<span class=\"tex-span\">1 ≤ <i>p</i><sub class=\"lower-index\"><i>i</i></sub> ≤ <i>n</i></span>) — the elements of the permutation. It is guaranteed that all elements are distinct.</p></div>"
+    },
+    {
+        "title": "Russian Roulette",
+        "desc": "<div><p>After all the events in Orlando we all know, Sasha and Roma decided to find out who is still the team's biggest loser. Thankfully, Masha found somewhere a revolver with a rotating cylinder of <span class=\"tex-span\"><i>n</i></span> bullet slots able to contain exactly <span class=\"tex-span\"><i>k</i></span> bullets, now the boys have a chance to resolve the problem once and for all. </p><p>Sasha selects any <span class=\"tex-span\"><i>k</i></span> out of <span class=\"tex-span\"><i>n</i></span> slots he wishes and puts bullets there. Roma spins the cylinder so that every of <span class=\"tex-span\"><i>n</i></span> possible cylinder's shifts is equiprobable. Then the game starts, the players take turns, Sasha starts: he puts the gun to his head and shoots. If there was no bullet in front of the trigger, the cylinder shifts by one position and the weapon is given to Roma for make the same move. The game continues until someone is shot, the survivor is the winner. </p><p>Sasha does not want to lose, so he must choose slots for bullets in such a way as to minimize the probability of its own loss. Of all the possible variant he wants to select the lexicographically minimal one, where an empty slot is lexicographically less than a charged one. </p><p>More formally, the cylinder of <span class=\"tex-span\"><i>n</i></span> bullet slots able to contain <span class=\"tex-span\"><i>k</i></span> bullets can be represented as a string of <span class=\"tex-span\"><i>n</i></span> characters. Exactly <span class=\"tex-span\"><i>k</i></span> of them are \"<span class=\"tex-font-style-tt\">X</span>\" (charged slots) and the others are \"<span class=\"tex-font-style-tt\">.</span>\" (uncharged slots). </p><p>Let us describe the process of a shot. Suppose that the trigger is in front of the first character of the string (the first slot). If a shot doesn't kill anyone and the cylinder shifts, then the string shifts left. So the first character becomes the last one, the second character becomes the first one, and so on. But the trigger doesn't move. It will be in front of the first character of the resulting string.</p><p>Among all the strings that give the minimal probability of loss, Sasha choose the lexicographically minimal one. According to this very string, he charges the gun. You have to help Sasha to charge the gun. For that, each <span class=\"tex-span\"><i>x</i><sub class=\"lower-index\"><i>i</i></sub></span> query must be answered: is there a bullet in the positions <span class=\"tex-span\"><i>x</i><sub class=\"lower-index\"><i>i</i></sub></span>?</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "greedy"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains three integers <span class=\"tex-span\"><i>n</i></span>, <span class=\"tex-span\"><i>k</i></span> and <span class=\"tex-span\"><i>p</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> ≤ 10<sup class=\"upper-index\">18</sup>, 0 ≤ <i>k</i> ≤ <i>n</i>, 1 ≤ <i>p</i> ≤ 1000</span>) — the number of slots in the cylinder, the number of bullets and the number of queries. Then follow <span class=\"tex-span\"><i>p</i></span> lines; they are the queries. Each line contains one integer <span class=\"tex-span\"><i>x</i><sub class=\"lower-index\"><i>i</i></sub></span> (<span class=\"tex-span\">1 ≤ <i>x</i><sub class=\"lower-index\"><i>i</i></sub> ≤ <i>n</i></span>) the number of slot to describe.</p><p>Please do not use the %lld specificator to read or write 64-bit numbers in С++. It is preferred to use cin, cout streams or the %I64d specificator.</p></div>"
+    },
+    {
+        "title": "Ghostfires",
+        "desc": "<div><p> </p><p>OtterZ decided to make a weapon using ghostfires. He collected several ghostfires in colors red, green, and blue. He will put some of the ghostfires in a row to build the weapon. To make the weapon more powerful, OtterZ will use as many ghostfires as possible, but the weapon will be out of control if there are two ghostfires of the same color adjacent or separated by exactly two ghostfires in the row.</p><p>Formally, OtterZ collected $r$ red ghostfires, $g$ green ghostfires, and $b$ blue ghostfires. He wants to construct a string $s$ consisting of the characters '<span class=\"tex-font-style-tt\">R</span>', '<span class=\"tex-font-style-tt\">G</span>', and '<span class=\"tex-font-style-tt\">B</span>' that satisfies the following conditions:</p><ul> <li> The number of occurrences of '<span class=\"tex-font-style-tt\">R</span>', '<span class=\"tex-font-style-tt\">G</span>', and '<span class=\"tex-font-style-tt\">B</span>' in $s$ does not exceed $r$, $g$, and $b$, respectively.</li><li> For all $1 \\le i \\le |s|-1$, $s_i \\ne s_{i+1}$.</li><li> For all $1 \\le i \\le |s|-3$, $s_i \\ne s_{i+3}$.</li><li> The length of $s$ is the maximum possible. </li></ul><p>Help OtterZ to construct the row. Although there may be several possible rows, OtterZ just requires one of them.</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "greedy"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>Each test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows. </p><p>The only line of each test case contains three integers $r$, $g$, and $b$ ($0\\le r,g,b \\le 10 ^ 6$, $r+g+b \\gt 0$), representing the number of red, green, and blue ghostfires, respectively.</p><p>It is guaranteed that the sum of $r + g + b$ over all test cases does not exceed $10 ^ 6$. </p></div>"
+    },
+    {
+        "title": "Integers Shop",
+        "desc": "<div><p>The integers shop sells $n$ segments. The $i$-th of them contains all integers from $l_i$ to $r_i$ and costs $c_i$ coins.</p><p>Tomorrow Vasya will go to this shop and will buy some segments there. He will get all integers that appear in at least one of bought segments. The total cost of the purchase is the sum of costs of all segments in it.</p><p>After shopping, Vasya will get some more integers as a gift. He will get integer $x$ as a gift if and only if all of the following conditions are satisfied: </p><ul> <li> Vasya hasn't bought $x$. </li><li> Vasya has bought integer $l$ that is less than $x$. </li><li> Vasya has bought integer $r$ that is greater than $x$. </li></ul><p>Vasya can get integer $x$ as a gift only once so he won't have the same integers after receiving a gift.</p><p>For example, if Vasya buys segment $[2, 4]$ for $20$ coins and segment $[7, 8]$ for $22$ coins, he spends $42$ coins and receives integers $2, 3, 4, 7, 8$ from these segments. He also gets integers $5$ and $6$ as a gift.</p><p>Due to the technical issues only the first $s$ segments (that is, segments $[l_1, r_1], [l_2, r_2], \\ldots, [l_s, r_s]$) will be available tomorrow in the shop.</p><p>Vasya wants to get (to buy or to get as a gift) as many integers as possible. If he can do this in differents ways, he selects the cheapest of them.</p><p>For each $s$ from $1$ to $n$, find how many coins will Vasya spend if only the first $s$ segments will be available.</p></div>",
+        "tags": [
+            "data structures",
+            "greedy",
+            "implementation"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases.</p><p>The first line of each test case contains the single integer $n$ ($1 \\leq n \\leq 10^5$) — the number of segments in the shop.</p><p>Each of next $n$ lines contains three integers $l_i$, $r_i$, $c_i$ ($1 \\leq l_i \\leq r_i \\leq 10^9, 1 \\leq c_i \\leq 10^9$) — the ends of the $i$-th segments and its cost.</p><p>It is guaranteed that the total sum of $n$ over all test cases doesn't exceed $2 \\cdot 10^5$.</p></div>"
+    },
+    {
+        "title": "Friends and Gifts",
+        "desc": "<div><p>There are $n$ friends who want to give gifts for the New Year to each other. Each friend should give <span class=\"tex-font-style-bf\">exactly</span> one gift and receive <span class=\"tex-font-style-bf\">exactly</span> one gift. The friend <span class=\"tex-font-style-bf\">cannot</span> give the gift to himself.</p><p>For each friend the value $f_i$ is known: it is either $f_i = 0$ if the $i$-th friend doesn't know whom he wants to give the gift to or $1 \\le f_i \\le n$ if the $i$-th friend wants to give the gift to the friend $f_i$.</p><p>You want to fill in the unknown values ($f_i = 0$) in such a way that each friend gives <span class=\"tex-font-style-bf\">exactly</span> one gift and receives <span class=\"tex-font-style-bf\">exactly</span> one gift and there is <span class=\"tex-font-style-bf\">no</span> friend who gives the gift to himself. It is guaranteed that the initial information isn't contradictory.</p><p>If there are several answers, you can print any.</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "data structures",
+            "math"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of the input contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of friends.</p><p>The second line of the input contains $n$ integers $f_1, f_2, \\dots, f_n$ ($0 \\le f_i \\le n$, $f_i \\ne i$, all $f_i \\ne 0$ are distinct), where $f_i$ is the either $f_i = 0$ if the $i$-th friend doesn't know whom he wants to give the gift to or $1 \\le f_i \\le n$ if the $i$-th friend wants to give the gift to the friend $f_i$. It is also guaranteed that there is <span class=\"tex-font-style-bf\">at least two</span> values $f_i = 0$.</p></div>"
+    },
+    {
+        "title": "Fence",
+        "desc": "<div><p>Vasya should paint a fence in front of his own cottage. The fence is a sequence of <span class=\"tex-span\"><i>n</i></span> wooden boards arranged in a single row. Each board is a <span class=\"tex-span\">1</span> centimeter wide rectangle. Let's number the board fence using numbers <span class=\"tex-span\">1, 2, ..., <i>n</i></span> from left to right. The height of the <span class=\"tex-span\"><i>i</i></span>-th board is <span class=\"tex-span\"><i>h</i><sub class=\"lower-index\"><i>i</i></sub></span> centimeters.</p><p>Vasya has a <span class=\"tex-span\">1</span> centimeter wide brush and the paint of two colors, red and green. Of course, the amount of the paint is limited. Vasya counted the area he can paint each of the colors. It turned out that he can not paint over <span class=\"tex-span\"><i>a</i></span> square centimeters of the fence red, and he can not paint over <span class=\"tex-span\"><i>b</i></span> square centimeters green. Each board of the fence should be painted exactly one of the two colors. Perhaps Vasya won't need one of the colors.</p><p>In addition, Vasya wants his fence to look smart. To do this, he should paint the fence so as to minimize the value that Vasya called the fence <span class=\"tex-font-style-it\">unattractiveness</span> value. Vasya believes that two consecutive fence boards, painted different colors, look unattractive. The <span class=\"tex-font-style-it\">unattractiveness</span> value of a fence is the total length of contact between the neighboring boards of various colors. To make the fence look nice, you need to minimize the value as low as possible. Your task is to find what is the minimum unattractiveness Vasya can get, if he paints his fence completely.</p><center> <img class=\"tex-graphics\" src=\"https://espresso.codeforces.com/608607fd89101c3a460c088eac5454cb8a9539ba.png\" style=\"max-width: 100.0%;max-height: 100.0%;\"/> </center><p>The picture shows the fence, where the heights of boards (from left to right) are 2,3,2,4,3,1. The first and the fifth boards are painted red, the others are painted green. The first and the second boards have contact length 2, the fourth and fifth boards have contact length 3, the fifth and the sixth have contact length 1. Therefore, the <span class=\"tex-font-style-it\">unattractiveness</span> of the given painted fence is 2+3+1=6.</p></div>",
+        "tags": [
+            "dp"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> ≤ 200</span>) — the number of boards in Vasya's fence.</p><p>The second line contains two integers <span class=\"tex-span\"><i>a</i></span> and <span class=\"tex-span\"><i>b</i></span> (<span class=\"tex-span\">0 ≤ <i>a</i>, <i>b</i> ≤ 4·10<sup class=\"upper-index\">4</sup></span>) — the area that can be painted red and the area that can be painted green, correspondingly.</p><p>The third line contains a sequence of <span class=\"tex-span\"><i>n</i></span> integers <span class=\"tex-span\"><i>h</i><sub class=\"lower-index\">1</sub>, <i>h</i><sub class=\"lower-index\">2</sub>, ..., <i>h</i><sub class=\"lower-index\"><i>n</i></sub></span> <span class=\"tex-span\">(1 ≤ <i>h</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 200)</span> — the heights of the fence boards.</p><p>All numbers in the lines are separated by single spaces.</p></div>"
+    },
+    {
+        "title": "Unique Values (Easy version)",
+        "desc": "<div><p><span class=\"tex-font-style-bf\">The difference between the easy version and hard version is the maximum number of queries allowed. In this version, it is 66.</span></p><p>There is a secret array $a$ of length $2n+1$, whose elements are integers from $1$ to $n$. Each value appears exactly twice, except for one value, which appears exactly three times.</p><p>Your goal is to find the three positions of the value that appears three times.</p><p>To do this, you may ask the following query at most 66 times: </p><ol> <li> Choose an integer $k$ and an array $s$ of $k$ distinct indices between $1$ and $2n+1$. </li><li> You will receive the number of different values among $a_{s_1}, a_{s_2}, \\ldots, a_{s_k}$ that appear exactly once, or, in other words, the count of values that are not repeated. </li></ol><p>For example, if the values $a_{s_1}, \\ldots, a_{s_k}$ are $\\{2, 1, 2, 3, 2, 3, 6, 7\\}$, the answer to the query will be 3, as 1, 6, 7 are the only values that appear exactly once. 3 appears 2 times and 2 appears 3 times, which is more than once, so they are not counted.</p></div>",
+        "tags": [
+            "binary search",
+            "constructive algorithms",
+            "divide and conquer",
+            "interactive",
+            "math"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>Each test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows. </p><p>The first line of each test case contains a single integer $n$ ($2 \\le n \\le 1000$).</p><p>The array $a$ is fixed for the test case and does not change during the interaction. In other words, the interactor is <span class=\"tex-font-style-bf\">not adaptive</span>.</p><p>It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^4$.</p></div>"
+    },
+    {
+        "title": "Finite or not?",
+        "desc": "<div><p>You are given several queries. Each query consists of three integers $p$, $q$ and $b$. You need to answer whether the result of $p/q$ in notation with base $b$ is a finite fraction.</p><p>A fraction in notation with base $b$ is finite if it contains finite number of numerals after the decimal point. It is also possible that a fraction has zero numerals after the decimal point.</p></div>",
+        "tags": [
+            "implementation",
+            "math"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer $n$ ($1 \\le n \\le 10^5$) — the number of queries.</p><p>Next $n$ lines contain queries, one per line. Each line contains three integers $p$, $q$, and $b$ ($0 \\le p \\le 10^{18}$, $1 \\le q \\le 10^{18}$, $2 \\le b \\le 10^{18}$). All numbers are given in notation with base $10$.</p></div>"
+    },
+    {
+        "title": "Points and Segments (easy)",
+        "desc": "<div><p>Iahub isn't well prepared on geometry problems, but he heard that this year there will be a lot of geometry problems on the IOI selection camp. Scared, Iahub locked himself in the basement and started thinking of new problems of this kind. One of them is the following.</p><p>Iahub wants to draw <span class=\"tex-span\"><i>n</i></span> distinct points and <span class=\"tex-span\"><i>m</i></span> segments on the <span class=\"tex-span\"><i>OX</i></span> axis. He can draw each point with either red or blue. The drawing is good if and only if the following requirement is met: for each segment <span class=\"tex-span\">[<i>l</i><sub class=\"lower-index\"><i>i</i></sub>, <i>r</i><sub class=\"lower-index\"><i>i</i></sub>]</span> consider all the red points belong to it (<span class=\"tex-span\"><i>r</i><sub class=\"lower-index\"><i>i</i></sub></span> points), and all the blue points belong to it (<span class=\"tex-span\"><i>b</i><sub class=\"lower-index\"><i>i</i></sub></span> points); each segment <span class=\"tex-span\"><i>i</i></span> should satisfy the inequality <span class=\"tex-span\">|<i>r</i><sub class=\"lower-index\"><i>i</i></sub> - <i>b</i><sub class=\"lower-index\"><i>i</i></sub>| ≤ 1</span>.</p><p>Iahub thinks that point <span class=\"tex-span\"><i>x</i></span> belongs to segment <span class=\"tex-span\">[<i>l</i>, <i>r</i>]</span>, if inequality <span class=\"tex-span\"><i>l</i> ≤ <i>x</i> ≤ <i>r</i></span> holds.</p><p>Iahub gives to you all coordinates of points and segments. Please, help him to find any good drawing.</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "sortings"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of input contains two integers: <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> ≤ 100</span>) and <span class=\"tex-span\"><i>m</i></span> (<span class=\"tex-span\">1 ≤ <i>m</i> ≤ 100</span>). The next line contains <span class=\"tex-span\"><i>n</i></span> space-separated integers <span class=\"tex-span\"><i>x</i><sub class=\"lower-index\">1</sub>, <i>x</i><sub class=\"lower-index\">2</sub>, ..., <i>x</i><sub class=\"lower-index\"><i>n</i></sub></span> (<span class=\"tex-span\">0 ≤ <i>x</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 100</span>) — the coordinates of the points. The following <span class=\"tex-span\"><i>m</i></span> lines contain the descriptions of the <span class=\"tex-span\"><i>m</i></span> segments. Each line contains two integers <span class=\"tex-span\"><i>l</i><sub class=\"lower-index\"><i>i</i></sub></span> and <span class=\"tex-span\"><i>r</i><sub class=\"lower-index\"><i>i</i></sub></span> (<span class=\"tex-span\">0 ≤ <i>l</i><sub class=\"lower-index\"><i>i</i></sub> ≤ <i>r</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 100</span>) — the borders of the <span class=\"tex-span\"><i>i</i></span>-th segment.</p><p>It's guaranteed that all the points are distinct.</p></div>"
+    },
+    {
+        "title": "Strange Game On Matrix",
+        "desc": "<div><p>Ivan is playing a strange game.</p><p>He has a matrix <span class=\"tex-span\"><i>a</i></span> with <span class=\"tex-span\"><i>n</i></span> rows and <span class=\"tex-span\"><i>m</i></span> columns. Each element of the matrix is equal to either <span class=\"tex-span\">0</span> or <span class=\"tex-span\">1</span>. Rows and columns are <span class=\"tex-span\">1</span>-indexed. Ivan can replace any number of ones in this matrix with zeroes. After that, his score in the game will be calculated as follows:</p><ol> <li> Initially Ivan's score is <span class=\"tex-span\">0</span>; </li><li> In each column, Ivan will find the topmost <span class=\"tex-span\">1</span> (that is, if the current column is <span class=\"tex-span\"><i>j</i></span>, then he will find minimum <span class=\"tex-span\"><i>i</i></span> such that <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i>, <i>j</i></sub> = 1</span>). If there are no <span class=\"tex-span\">1</span>'s in the column, this column is skipped; </li><li> Ivan will look at the next <span class=\"tex-span\"><i>min</i>(<i>k</i>, <i>n</i> - <i>i</i> + 1)</span> elements in this column (starting from the element he found) and count the number of <span class=\"tex-span\">1</span>'s among these elements. This number will be added to his score. </li></ol><p>Of course, Ivan wants to maximize his score in this strange game. Also he doesn't want to change many elements, so he will replace the minimum possible number of ones with zeroes. Help him to determine the maximum possible score he can get and the minimum possible number of replacements required to achieve that score.</p></div>",
+        "tags": [
+            "greedy",
+            "two pointers"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains three integer numbers <span class=\"tex-span\"><i>n</i></span>, <span class=\"tex-span\"><i>m</i></span> and <span class=\"tex-span\"><i>k</i></span> (<span class=\"tex-span\">1 ≤ <i>k</i> ≤ <i>n</i> ≤ 100</span>, <span class=\"tex-span\">1 ≤ <i>m</i> ≤ 100</span>).</p><p>Then <span class=\"tex-span\"><i>n</i></span> lines follow, <span class=\"tex-span\"><i>i</i></span>-th of them contains <span class=\"tex-span\"><i>m</i></span> integer numbers — the elements of <span class=\"tex-span\"><i>i</i></span>-th row of matrix <span class=\"tex-span\"><i>a</i></span>. Each number is either <span class=\"tex-span\">0</span> or <span class=\"tex-span\">1</span>.</p></div>"
+    },
+    {
+        "title": "Almost Regular Bracket Sequence",
+        "desc": "<div><p>You are given a bracket sequence $s$ consisting of $n$ opening '<span class=\"tex-font-style-tt\">(</span>' and closing '<span class=\"tex-font-style-tt\">)</span>' brackets.</p><p>A <span class=\"tex-font-style-it\">regular</span> bracket sequence is a bracket sequence that can be transformed into a correct arithmetic expression by inserting characters '<span class=\"tex-font-style-tt\">1</span>' and '<span class=\"tex-font-style-tt\">+</span>' between the original characters of the sequence. For example, bracket sequences \"<span class=\"tex-font-style-tt\">()()</span>\", \"<span class=\"tex-font-style-tt\">(())</span>\" are regular (the resulting expressions are: \"<span class=\"tex-font-style-tt\">(1)+(1)</span>\", \"<span class=\"tex-font-style-tt\">((1+1)+1)</span>\"), and \"<span class=\"tex-font-style-tt\">)(</span>\" and \"<span class=\"tex-font-style-tt\">(</span>\" are not.</p><p>You can change the type of some bracket $s_i$. It means that if $s_i = $ '<span class=\"tex-font-style-tt\">)</span>' then you can change it to '<span class=\"tex-font-style-tt\">(</span>' and vice versa.</p><p>Your task is to calculate the number of positions $i$ such that if you change the type of the $i$-th bracket, then the resulting bracket sequence becomes <span class=\"tex-font-style-it\">regular</span>.</p></div>",
+        "tags": [
+            "implementation"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of the input contains one integer $n$ ($1 \\le n \\le 10^6$) — the length of the bracket sequence.</p><p>The second line of the input contains the string $s$ consisting of $n$ opening '<span class=\"tex-font-style-tt\">(</span>' and closing '<span class=\"tex-font-style-tt\">)</span>' brackets.</p></div>"
+    },
+    {
+        "title": "Set To Max (Easy Version)",
+        "desc": "<div><p><span class=\"tex-font-style-bf\">This is the easy version of the problem. The only differences between the two versions of this problem are the constraints on $n$ and the time limit. You can make hacks only if all versions of the problem are solved.</span></p><p>You are given two arrays $a$ and $b$ of length $n$.</p><p>You can perform the following operation some (possibly zero) times: </p><ol> <li> choose $l$ and $r$ such that $1 \\leq l \\leq r \\leq n$. </li><li> let $x=\\max(a_l,a_{l+1},\\ldots,a_r)$. </li><li> for all $l \\leq i \\leq r$, set $a_i := x$. </li></ol><p>Determine if you can make array $a$ equal to array $b$.</p></div>",
+        "tags": [
+            "brute force",
+            "constructive algorithms",
+            "greedy"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>Each test contains multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases. The description of the test cases follows.</p><p>The first line of each test case contains a single integer $n$ ($1 \\le n \\le 1000$) — the length of the arrays.</p><p>The second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$) — the elements of array $a$.</p><p>The third line contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\le n$) — the elements of array $b$.</p><p>It is guaranteed that the sum of $n^2$ over all test cases does not exceed $10^6$.</p></div>"
+    },
+    {
+        "title": "Balanced Substring",
+        "desc": "<div><p>You are given a string <span class=\"tex-span\"><i>s</i></span> consisting only of characters <span class=\"tex-font-style-tt\">0</span> and <span class=\"tex-font-style-tt\">1</span>. A substring <span class=\"tex-span\">[<i>l</i>, <i>r</i>]</span> of <span class=\"tex-span\"><i>s</i></span> is a string <span class=\"tex-span\"><i>s</i><sub class=\"lower-index\"><i>l</i></sub><i>s</i><sub class=\"lower-index\"><i>l</i> + 1</sub><i>s</i><sub class=\"lower-index\"><i>l</i> + 2</sub>... <i>s</i><sub class=\"lower-index\"><i>r</i></sub></span>, and its length equals to <span class=\"tex-span\"><i>r</i> - <i>l</i> + 1</span>. A substring is called <span class=\"tex-font-style-it\">balanced</span> if the number of zeroes (<span class=\"tex-font-style-tt\">0</span>) equals to the number of ones in this substring.</p><p>You have to determine the length of the longest <span class=\"tex-font-style-it\">balanced</span> substring of <span class=\"tex-span\"><i>s</i></span>.</p></div>",
+        "tags": [
+            "dp",
+            "implementation"
+        ],
+        "difficulty": "1500",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> ≤ 100000</span>) — the number of characters in <span class=\"tex-span\"><i>s</i></span>.</p><p>The second line contains a string <span class=\"tex-span\"><i>s</i></span> consisting of exactly <span class=\"tex-span\"><i>n</i></span> characters. Only characters <span class=\"tex-font-style-tt\">0</span> and <span class=\"tex-font-style-tt\">1</span> can appear in <span class=\"tex-span\"><i>s</i></span>.</p></div>"
+    },
+    {
+        "title": "Multiplicity",
+        "desc": "<div><p>You are given an integer array $a_1, a_2, \\ldots, a_n$.</p><p>The array $b$ is called to be a <span class=\"tex-font-style-it\">subsequence</span> of $a$ if it is possible to remove some elements from $a$ to get $b$.</p><p>Array $b_1, b_2, \\ldots, b_k$ is called to be <span class=\"tex-font-style-it\">good</span> if it is not empty and for every $i$ ($1 \\le i \\le k$) $b_i$ is divisible by $i$.</p><p>Find the number of good subsequences in $a$ modulo $10^9 + 7$. </p><p>Two subsequences are considered different if index sets of numbers included in them are different. That is, the values ​of the elements ​do not matter in the comparison of subsequences. In particular, the array $a$ has exactly $2^n - 1$ different subsequences (excluding an empty subsequence).</p></div>",
+        "tags": [
+            "data structures",
+            "dp",
+            "implementation",
+            "math",
+            "number theory"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains an integer $n$ ($1 \\le n \\le 100\\,000$) — the length of the array $a$.</p><p>The next line contains integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^6$).</p></div>"
+    },
+    {
+        "title": "Jury Meeting",
+        "desc": "<div><p>Country of Metropolia is holding Olympiad of Metrpolises soon. It mean that all jury members of the olympiad should meet together in Metropolis (the capital of the country) for the problem preparation process.</p><p>There are <span class=\"tex-span\"><i>n</i> + 1</span> cities consecutively numbered from <span class=\"tex-span\">0</span> to <span class=\"tex-span\"><i>n</i></span>. City <span class=\"tex-span\">0</span> is Metropolis that is the meeting point for all jury members. For each city from <span class=\"tex-span\">1</span> to <span class=\"tex-span\"><i>n</i></span> there is exactly one jury member living there. Olympiad preparation is a long and demanding process that requires <span class=\"tex-span\"><i>k</i></span> days of work. For all of these <span class=\"tex-span\"><i>k</i></span> days each of the <span class=\"tex-span\"><i>n</i></span> jury members should be present in Metropolis to be able to work on problems.</p><p>You know the flight schedule in the country (jury members consider themselves important enough to only use flights for transportation). All flights in Metropolia are either going to Metropolis or out of Metropolis. There are no night flights in Metropolia, or in the other words, plane always takes off at the same day it arrives. On his arrival day and departure day jury member is not able to discuss the olympiad. All flights in Megapolia depart and arrive at the same day.</p><p>Gather everybody for <span class=\"tex-span\"><i>k</i></span> days in the capital is a hard objective, doing that while spending the minimum possible money is even harder. Nevertheless, your task is to arrange the cheapest way to bring all of the jury members to Metrpolis, so that they can work together for <span class=\"tex-span\"><i>k</i></span> days and then send them back to their home cities. Cost of the arrangement is defined as a total cost of tickets for all used flights. It is allowed for jury member to stay in Metropolis for more than <span class=\"tex-span\"><i>k</i></span> days.</p></div>",
+        "tags": [
+            "greedy",
+            "sortings",
+            "two pointers"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of input contains three integers <span class=\"tex-span\"><i>n</i></span>, <span class=\"tex-span\"><i>m</i></span> and <span class=\"tex-span\"><i>k</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> ≤ 10<sup class=\"upper-index\">5</sup></span>, <span class=\"tex-span\">0 ≤ <i>m</i> ≤ 10<sup class=\"upper-index\">5</sup></span>, <span class=\"tex-span\">1 ≤ <i>k</i> ≤ 10<sup class=\"upper-index\">6</sup></span>). </p><p>The <span class=\"tex-span\"><i>i</i></span>-th of the following <span class=\"tex-span\"><i>m</i></span> lines contains the description of the <span class=\"tex-span\"><i>i</i></span>-th flight defined by four integers <span class=\"tex-span\"><i>d</i><sub class=\"lower-index\"><i>i</i></sub></span>, <span class=\"tex-span\"><i>f</i><sub class=\"lower-index\"><i>i</i></sub></span>, <span class=\"tex-span\"><i>t</i><sub class=\"lower-index\"><i>i</i></sub></span> and <span class=\"tex-span\"><i>c</i><sub class=\"lower-index\"><i>i</i></sub></span> (<span class=\"tex-span\">1 ≤ <i>d</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 10<sup class=\"upper-index\">6</sup></span>, <span class=\"tex-span\">0 ≤ <i>f</i><sub class=\"lower-index\"><i>i</i></sub> ≤ <i>n</i></span>, <span class=\"tex-span\">0 ≤ <i>t</i><sub class=\"lower-index\"><i>i</i></sub> ≤ <i>n</i></span>, <span class=\"tex-span\">1 ≤ <i>c</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 10<sup class=\"upper-index\">6</sup></span>, exactly one of <span class=\"tex-span\"><i>f</i><sub class=\"lower-index\"><i>i</i></sub></span> and <span class=\"tex-span\"><i>t</i><sub class=\"lower-index\"><i>i</i></sub></span> equals zero), the day of departure (and arrival), the departure city, the arrival city and the ticket cost.</p></div>"
+    },
+    {
+        "title": "One-Based Arithmetic",
+        "desc": "<div><p>Prof. Vasechkin wants to represent positive integer <span class=\"tex-span\"><i>n</i></span> as a sum of addends, where each addends is an integer number containing only <span class=\"tex-font-style-tt\">1</span>s. For example, he can represent 121 as 121=111+11+–1. Help him to find the least number of digits <span class=\"tex-font-style-tt\">1</span> in such sum.</p></div>",
+        "tags": [
+            "brute force",
+            "dfs and similar",
+            "divide and conquer"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of the input contains integer <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">1 ≤ <i>n</i> &lt; 10<sup class=\"upper-index\">15</sup></span>).</p></div>"
+    },
+    {
+        "title": "Johnny and Contribution",
+        "desc": "<div><p>Today Johnny wants to increase his contribution. His plan assumes writing $n$ blogs. One blog covers one topic, but one topic can be covered by many blogs. Moreover, some blogs have references to each other. Each pair of blogs that are connected by a reference has to cover different topics because otherwise, the readers can notice that they are split just for more contribution. Set of blogs and bidirectional references between some pairs of them is called blogs network.</p><p>There are $n$ different topics, numbered from $1$ to $n$ sorted by Johnny's knowledge. The structure of the blogs network is already prepared. Now Johnny has to write the blogs in some order. He is lazy, so each time before writing a blog, he looks at it's already written neighbors (the blogs referenced to current one) and chooses the topic with the smallest number which is not covered by neighbors. It's easy to see that this strategy will always allow him to choose a topic because there are at most $n - 1$ neighbors.</p><p>For example, if already written neighbors of the current blog have topics number $1$, $3$, $1$, $5$, and $2$, Johnny will choose the topic number $4$ for the current blog, because topics number $1$, $2$ and $3$ are already covered by neighbors and topic number $4$ isn't covered.</p><p>As a good friend, you have done some research and predicted the best topic for each blog. Can you tell Johnny, in which order he has to write the blogs, so that his strategy produces the topic assignment chosen by you?</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "graphs",
+            "greedy",
+            "sortings"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains two integers $n$ $(1 \\leq n \\leq 5 \\cdot 10^5)$ and $m$ $(0 \\leq m \\leq 5 \\cdot 10^5)$ — the number of blogs and references, respectively.</p><p>Each of the following $m$ lines contains two integers $a$ and $b$ ($a \\neq b$; $1 \\leq a, b \\leq n$), which mean that there is a reference between blogs $a$ and $b$. It's guaranteed that the graph doesn't contain multiple edges.</p><p>The last line contains $n$ integers $t_1, t_2, \\ldots, t_n$, $i$-th of them denotes desired topic number of the $i$-th blog ($1 \\le t_i \\le n$).</p></div>"
+    },
+    {
+        "title": "Dreamoon Likes Coloring",
+        "desc": "<div><p>Dreamoon likes coloring cells very much.</p><p>There is a row of $n$ cells. Initially, all cells are empty (don't contain any color). Cells are numbered from $1$ to $n$.</p><p>You are given an integer $m$ and $m$ integers $l_1, l_2, \\ldots, l_m$ ($1 \\le l_i \\le n$)</p><p>Dreamoon will perform $m$ operations.</p><p>In $i$-th operation, Dreamoon will choose a number $p_i$ from range $[1, n-l_i+1]$ (inclusive) and will paint all cells from $p_i$ to $p_i+l_i-1$ (inclusive) in $i$-th color. Note that cells may be colored more one than once, in this case, cell will have the color from the latest operation.</p><p>Dreamoon hopes that after these $m$ operations, all colors will appear at least once and all cells will be colored. Please help Dreamoon to choose $p_i$ in each operation to satisfy all constraints.</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "greedy",
+            "implementation",
+            "math"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains two integers $n,m$ ($1 \\leq m \\leq n \\leq 100\\,000$).</p><p>The second line contains $m$ integers $l_1, l_2, \\ldots, l_m$ ($1 \\leq l_i \\leq n$).</p></div>"
+    },
+    {
+        "title": "Bad Luck Island",
+        "desc": "<div><p>The Bad Luck Island is inhabited by three kinds of species: <span class=\"tex-span\"><i>r</i></span> rocks, <span class=\"tex-span\"><i>s</i></span> scissors and <span class=\"tex-span\"><i>p</i></span> papers. At some moments of time two random individuals meet (all pairs of individuals can meet equiprobably), and if they belong to different species, then one individual kills the other one: a rock kills scissors, scissors kill paper, and paper kills a rock. Your task is to determine for each species what is the probability that this species will be the only one to inhabit this island after a long enough period of time.</p></div>",
+        "tags": [
+            "dp",
+            "probabilities"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The single line contains three integers <span class=\"tex-span\"><i>r</i></span>, <span class=\"tex-span\"><i>s</i></span> and <span class=\"tex-span\"><i>p</i></span> (<span class=\"tex-span\">1 ≤ <i>r</i>, <i>s</i>, <i>p</i> ≤ 100</span>) — the original number of individuals in the species of rock, scissors and paper, respectively.</p></div>"
+    },
+    {
+        "title": "Unusual Matrix",
+        "desc": "<div><p>You are given two binary square matrices $a$ and $b$ of size $n \\times n$. A matrix is called binary if each of its elements is equal to $0$ or $1$. You can do the following operations on the matrix $a$ <span class=\"tex-font-style-bf\">arbitrary</span> number of times (0 or more): </p><ul> <li> vertical <span class=\"tex-font-style-tt\">xor</span>. You choose the number $j$ ($1 \\le j \\le n$) and for all $i$ ($1 \\le i \\le n$) do the following: $a_{i, j} := a_{i, j} \\oplus 1$ ($\\oplus$ — is the operation <a href=\"https://en.wikipedia.org/wiki/Exclusive_or\"><span class=\"tex-font-style-tt\">xor</span></a> (exclusive or)). </li><li> horizontal <span class=\"tex-font-style-tt\">xor</span>. You choose the number $i$ ($1 \\le i \\le n$) and for all $j$ ($1 \\le j \\le n$) do the following: $a_{i, j} := a_{i, j} \\oplus 1$. </li></ul><p>Note that the elements of the $a$ matrix change after each operation.</p><p>For example, if $n=3$ and the matrix $a$ is: $$ \\begin{pmatrix} 1 &amp; 1 &amp; 0 \\\\ 0 &amp; 0 &amp; 1 \\\\ 1 &amp; 1 &amp; 0 \\end{pmatrix} $$ Then the following sequence of operations shows an example of transformations: </p><ul> <li> vertical <span class=\"tex-font-style-tt\">xor</span>, $j=1$. $$ a= \\begin{pmatrix} 0 &amp; 1 &amp; 0 \\\\ 1 &amp; 0 &amp; 1 \\\\ 0 &amp; 1 &amp; 0 \\end{pmatrix} $$ </li><li> horizontal <span class=\"tex-font-style-tt\">xor</span>, $i=2$. $$ a= \\begin{pmatrix} 0 &amp; 1 &amp; 0 \\\\ 0 &amp; 1 &amp; 0 \\\\ 0 &amp; 1 &amp; 0 \\end{pmatrix} $$ </li><li> vertical <span class=\"tex-font-style-tt\">xor</span>, $j=2$. $$ a= \\begin{pmatrix} 0 &amp; 0 &amp; 0 \\\\ 0 &amp; 0 &amp; 0 \\\\ 0 &amp; 0 &amp; 0 \\end{pmatrix} $$ </li></ul><p>Check if there is a sequence of operations such that the matrix $a$ becomes equal to the matrix $b$.</p></div>",
+        "tags": [
+            "2-sat",
+            "brute force",
+            "constructive algorithms"
+        ],
+        "difficulty": "1900",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains one integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases. Then $t$ test cases follow.</p><p>The first line of each test case contains one integer $n$ ($1 \\leq n \\leq 1000$) — the size of the matrices.</p><p>The following $n$ lines contain strings of length $n$, consisting of the characters '<span class=\"tex-font-style-tt\">0</span>' and '<span class=\"tex-font-style-tt\">1</span>' — the description of the matrix $a$.</p><p>An empty line follows.</p><p>The following $n$ lines contain strings of length $n$, consisting of the characters '<span class=\"tex-font-style-tt\">0</span>' and '<span class=\"tex-font-style-tt\">1</span>' — the description of the matrix $b$.</p><p>It is guaranteed that the sum of $n$ over all test cases does not exceed $1000$.</p></div>"
+    },
+    {
+        "title": "Maximum Diameter Graph",
+        "desc": "<div><p>Graph constructive problems are back! This time the graph you are asked to build should match the following properties.</p><p>The graph is connected if and only if there exists a path between every pair of vertices.</p><p>The diameter (aka \"longest shortest path\") of a connected undirected graph is the maximum number of edges in the <span class=\"tex-font-style-bf\">shortest</span> path between any pair of its vertices.</p><p>The degree of a vertex is the number of edges incident to it.</p><p>Given a sequence of $n$ integers $a_1, a_2, \\dots, a_n$ construct a <span class=\"tex-font-style-bf\">connected undirected</span> graph of $n$ vertices such that:</p><ul> <li> the graph contains no self-loops and no multiple edges; </li><li> the degree $d_i$ of the $i$-th vertex doesn't exceed $a_i$ (i.e. $d_i \\le a_i$); </li><li> the diameter of the graph is maximum possible. </li></ul><p>Output the resulting graph or report that no solution exists.</p></div>",
+        "tags": [
+            "constructive algorithms",
+            "graphs",
+            "implementation"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains a single integer $n$ ($3 \\le n \\le 500$) — the number of vertices in the graph.</p><p>The second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n - 1$) — the upper limits to vertex degrees.</p></div>"
+    },
+    {
+        "title": "4-point polyline",
+        "desc": "<div><p>You are given a rectangular grid of lattice points from <span class=\"tex-span\">(0, 0)</span> to <span class=\"tex-span\">(<i>n</i>, <i>m</i>)</span> inclusive. You have to choose exactly 4 different points to build a polyline possibly with self-intersections and self-touching. This polyline should be as long as possible.</p><p>A polyline defined by points <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\">1</sub>, <i>p</i><sub class=\"lower-index\">2</sub>, <i>p</i><sub class=\"lower-index\">3</sub>, <i>p</i><sub class=\"lower-index\">4</sub></span> consists of the line segments <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\">1</sub> <i>p</i><sub class=\"lower-index\">2</sub>, <i>p</i><sub class=\"lower-index\">2</sub> <i>p</i><sub class=\"lower-index\">3</sub>, <i>p</i><sub class=\"lower-index\">3</sub> <i>p</i><sub class=\"lower-index\">4</sub></span>, and its length is the sum of the lengths of the individual line segments.</p></div>",
+        "tags": [
+            "brute force",
+            "constructive algorithms",
+            "geometry",
+            "trees"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The only line of the input contains two integers <span class=\"tex-span\"><i>n</i></span> and <span class=\"tex-span\"><i>m</i></span> <span class=\"tex-span\">(0 ≤ <i>n</i>, <i>m</i> ≤ 1000)</span>. It is guaranteed that grid contains at least 4 different points.</p></div>"
+    },
+    {
+        "title": "Prime factorization",
+        "desc": "<div><p>You are given a positive integer <span class=\"tex-span\"><i>n</i></span>. Output its prime factorization.</p><p>If <span class=\"tex-span\"><i>n</i></span> = <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub><sup class=\"upper-index\"><i>b</i><sub class=\"lower-index\">1</sub></sup></span> <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">2</sub><sup class=\"upper-index\"><i>b</i><sub class=\"lower-index\">2</sub></sup></span> <span class=\"tex-span\">...</span> <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>k</i></sub><sup class=\"upper-index\"><i>b</i><sub class=\"lower-index\"><i>k</i></sub></sup></span> (<span class=\"tex-span\"><i>b</i><sub class=\"lower-index\"><i>i</i></sub> &gt; 0</span>), where <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>k</i></sub></span> are prime numbers, the output of your program should look as follows: <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub></span>*...*<span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub></span>*<span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">2</sub></span>*...*<span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">2</sub></span>*...*<span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>k</i></sub></span>*...*<span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>k</i></sub></span>, where the factors are ordered in non-decreasing order, and each factor <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i></sub></span> is printed <span class=\"tex-span\"><i>b</i><sub class=\"lower-index\"><i>i</i></sub></span> times.</p></div>",
+        "tags": [
+            "*special"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The only line of input contains an integer <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">2 ≤ <i>n</i> ≤ 10000</span>).</p></div>"
+    },
+    {
+        "title": "ZgukistringZ",
+        "desc": "<div><p>Professor GukiZ doesn't accept string as they are. He likes to swap some letters in string to obtain a new one.</p><p>GukiZ has strings <span class=\"tex-span\"><i>a</i></span>, <span class=\"tex-span\"><i>b</i></span>, and <span class=\"tex-span\"><i>c</i></span>. He wants to obtain string <span class=\"tex-span\"><i>k</i></span> by swapping some letters in <span class=\"tex-span\"><i>a</i></span>, so that <span class=\"tex-span\"><i>k</i></span> should contain as many non-overlapping substrings equal either to <span class=\"tex-span\"><i>b</i></span> or <span class=\"tex-span\"><i>c</i></span> as possible. Substring of string <span class=\"tex-span\"><i>x</i></span> is a string formed by consecutive segment of characters from <span class=\"tex-span\"><i>x</i></span>. Two substrings of string <span class=\"tex-span\"><i>x</i></span> overlap if there is position <span class=\"tex-span\"><i>i</i></span> in string <span class=\"tex-span\"><i>x</i></span> occupied by both of them.</p><p>GukiZ was disappointed because none of his students managed to solve the problem. Can you help them and find one of possible strings <span class=\"tex-span\"><i>k</i></span>?</p></div>",
+        "tags": [
+            "brute force",
+            "constructive algorithms",
+            "implementation",
+            "strings"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains string <span class=\"tex-span\"><i>a</i></span>, the second line contains string <span class=\"tex-span\"><i>b</i></span>, and the third line contains string <span class=\"tex-span\"><i>c</i></span> (<span class=\"tex-span\">1 ≤ |<i>a</i>|, |<i>b</i>|, |<i>c</i>| ≤ 10<sup class=\"upper-index\">5</sup></span>, where <span class=\"tex-span\">|<i>s</i>|</span> denotes the length of string <span class=\"tex-span\"><i>s</i></span>).</p><p>All three strings consist only of lowercase English letters. </p><p>It is possible that <span class=\"tex-span\"><i>b</i></span> and <span class=\"tex-span\"><i>c</i></span> coincide.</p></div>"
+    },
+    {
+        "title": "Serval and The Formula",
+        "desc": "<div><p> </p><p>You are given two positive integers $x$ and $y$ ($1\\le x, y\\le 10^9$).</p><p>Find a <span class=\"tex-font-style-bf\">non-negative</span> integer $k\\le 10^{18}$, such that $(x+k) + (y+k) = (x+k)\\oplus (y+k)$ holds$^{\\text{∗}}$, or determine that such an integer does not exist.</p><div class=\"statement-footnote\"><p>$^{\\text{∗}}$$\\oplus$ denotes the <a href=\"https://en.wikipedia.org/wiki/Bitwise_operation#XOR\">bitwise XOR operation</a>. </p></div></div>",
+        "tags": [
+            "bitmasks",
+            "constructive algorithms",
+            "dp",
+            "greedy"
+        ],
+        "difficulty": "1600",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>Each test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows. </p><p>The only line of each test case contains two integers $x$ and $y$ ($1\\le x, y\\le 10^9$) — the given integers.</p></div>"
+    },
+    {
+        "title": "Spider's Web",
+        "desc": "<div><p>Paw the Spider is making a web. Web-making is a real art, Paw has been learning to do it his whole life. Let's consider the structure of the web.</p><center> <img class=\"tex-graphics\" src=\"https://espresso.codeforces.com/0492782481416af50339b7107392671efa23c773.png\" style=\"max-width: 100.0%;max-height: 100.0%;\"/> </center><p>There are <span class=\"tex-span\"><i>n</i></span> <span class=\"tex-font-style-it\">main</span> threads going from the center of the web. All main threads are located in one plane and divide it into <span class=\"tex-span\"><i>n</i></span> equal infinite <span class=\"tex-font-style-it\">sectors</span>. The sectors are indexed from <span class=\"tex-span\">1</span> to <span class=\"tex-span\"><i>n</i></span> in the clockwise direction. Sectors <span class=\"tex-span\"><i>i</i></span> and <span class=\"tex-span\"><i>i</i> + 1</span> are <span class=\"tex-font-style-it\">adjacent</span> for every <span class=\"tex-span\"><i>i</i></span>, <span class=\"tex-span\">1 ≤ <i>i</i> &lt; <i>n</i></span>. In addition, sectors <span class=\"tex-span\">1</span> and <span class=\"tex-span\"><i>n</i></span> are also adjacent.</p><p>Some sectors have <span class=\"tex-font-style-it\">bridge threads</span>. Each bridge connects the two main threads that make up this sector. The points at which the bridge is attached to the main threads will be called <span class=\"tex-font-style-it\">attachment points</span>. Both attachment points of a bridge are at the same distance from the center of the web. At each attachment point exactly one bridge is attached. The bridges are <span class=\"tex-font-style-it\">adjacent</span> if they are in the same sector, and there are no other bridges between them.</p><p>A <span class=\"tex-font-style-it\">cell</span> of the web is a trapezoid, which is located in one of the sectors and is bounded by two main threads and two adjacent bridges. You can see that the sides of the cell may have the attachment points of bridges from adjacent sectors. If the number of attachment points on one side of the cell is not equal to the number of attachment points on the other side, it creates an imbalance of pulling forces on this cell and this may eventually destroy the entire web. We'll call such a cell <span class=\"tex-font-style-it\">unstable</span>. The perfect web does not contain unstable cells.</p><p>Unstable cells are marked red in the figure. Stable cells are marked green.</p><p>Paw the Spider isn't a skillful webmaker yet, he is only learning to make perfect webs. Help Paw to determine the number of unstable cells in the web he has just spun.</p></div>",
+        "tags": [
+            "binary search",
+            "sortings",
+            "two pointers"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains integer <span class=\"tex-span\"><i>n</i></span> (<span class=\"tex-span\">3 ≤ <i>n</i> ≤ 1000</span>) — the number of main threads.</p><p>The <span class=\"tex-span\"><i>i</i></span>-th of following <span class=\"tex-span\"><i>n</i></span> lines describe the bridges located in the <span class=\"tex-span\"><i>i</i></span>-th sector: first it contains integer <span class=\"tex-span\"><i>k</i><sub class=\"lower-index\"><i>i</i></sub></span> (<span class=\"tex-span\">1 ≤ <i>k</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 10<sup class=\"upper-index\">5</sup></span>) equal to the number of bridges in the given sector. Then follow <span class=\"tex-span\"><i>k</i><sub class=\"lower-index\"><i>i</i></sub></span> different integers <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\"><i>ij</i></sub></span> (<span class=\"tex-span\">1 ≤ <i>p</i><sub class=\"lower-index\"><i>ij</i></sub> ≤ 10<sup class=\"upper-index\">5</sup>; 1 ≤ <i>j</i> ≤ <i>k</i><sub class=\"lower-index\"><i>i</i></sub></span>). Number <span class=\"tex-span\"><i>p</i><sub class=\"lower-index\"><i>ij</i></sub></span> equals the distance from the attachment points of the <span class=\"tex-span\"><i>j</i></span>-th bridge of the <span class=\"tex-span\"><i>i</i></span>-th sector to the center of the web.</p><p>It is guaranteed that any two bridges between adjacent sectors are attached at a different distance from the center of the web. It is guaranteed that the total number of the bridges doesn't exceed <span class=\"tex-span\">10<sup class=\"upper-index\">5</sup></span>.</p></div>"
+    },
+    {
+        "title": "Shift and Reverse",
+        "desc": "<div><p>Given an array of integers $a_1, a_2, \\ldots, a_n$. You can make two types of operations with this array: </p><ul> <li> Shift: move the last element of array to the first place, and shift all other elements to the right, so you get the array $a_n, a_1, a_2, \\ldots, a_{n-1}$. </li><li> Reverse: reverse the whole array, so you get the array $a_n, a_{n-1}, \\ldots, a_1$. </li></ul><p>Your task is to sort the array in non-decreasing order using the minimal number of operations, or say that it is impossible.</p></div>",
+        "tags": [
+            "greedy",
+            "sortings"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Descriptions of test cases follow.</p><p>The first line of each test case contains an integer $n$ ($1\\le n \\le 10^5$) — size of the array. </p><p>The second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — elements of the array.</p><p>It is guaranteed that sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.</p></div>"
+    },
+    {
+        "title": "Present",
+        "desc": "<div><p>Little beaver is a beginner programmer, so informatics is his favorite subject. Soon his informatics teacher is going to have a birthday and the beaver has decided to prepare a present for her. He planted <span class=\"tex-span\"><i>n</i></span> flowers in a row on his windowsill and started waiting for them to grow. However, after some time the beaver noticed that the flowers stopped growing. The beaver thinks it is bad manners to present little flowers. So he decided to come up with some solutions. </p><p>There are <span class=\"tex-span\"><i>m</i></span> days left to the birthday. The height of the <span class=\"tex-span\"><i>i</i></span>-th flower (assume that the flowers in the row are numbered from <span class=\"tex-span\">1</span> to <span class=\"tex-span\"><i>n</i></span> from left to right) is equal to <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\"><i>i</i></sub></span> at the moment. At each of the remaining <span class=\"tex-span\"><i>m</i></span> days the beaver can take a special watering and water <span class=\"tex-span\"><i>w</i></span> contiguous flowers (he can do that only once at a day). At that each watered flower grows by one height unit on that day. The beaver wants the height of the smallest flower be as large as possible in the end. What maximum height of the smallest flower can he get?</p></div>",
+        "tags": [
+            "binary search",
+            "data structures",
+            "greedy"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line contains space-separated integers <span class=\"tex-span\"><i>n</i></span>, <span class=\"tex-span\"><i>m</i></span> and <span class=\"tex-span\"><i>w</i></span> <span class=\"tex-span\">(1 ≤ <i>w</i> ≤ <i>n</i> ≤ 10<sup class=\"upper-index\">5</sup>; 1 ≤ <i>m</i> ≤ 10<sup class=\"upper-index\">5</sup>)</span>. The second line contains space-separated integers <span class=\"tex-span\"><i>a</i><sub class=\"lower-index\">1</sub>, <i>a</i><sub class=\"lower-index\">2</sub>, ..., <i>a</i><sub class=\"lower-index\"><i>n</i></sub></span> <span class=\"tex-span\">(1 ≤ <i>a</i><sub class=\"lower-index\"><i>i</i></sub> ≤ 10<sup class=\"upper-index\">9</sup>)</span>.</p></div>"
+    },
+    {
+        "title": "Neko does Maths",
+        "desc": "<div><p>Neko loves divisors. During the latest number theory lesson, he got an interesting exercise from his math teacher.</p><p>Neko has two integers $a$ and $b$. His goal is to find a non-negative integer $k$ such that the least common multiple of $a+k$ and $b+k$ is the smallest possible. If there are multiple optimal integers $k$, he needs to choose the smallest one.</p><p>Given his mathematical talent, Neko had no trouble getting Wrong Answer on this problem. Can you help him solve it?</p></div>",
+        "tags": [
+            "brute force",
+            "math",
+            "number theory"
+        ],
+        "difficulty": "1800",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The only line contains two integers $a$ and $b$ ($1 \\le a, b \\le 10^9$).</p></div>"
+    },
+    {
+        "title": "Hacking Cypher",
+        "desc": "<div><p>Polycarpus participates in a competition for hacking into a new secure messenger. He's almost won.</p><p>Having carefully studied the interaction protocol, Polycarpus came to the conclusion that the secret key can be obtained if he properly cuts the public key of the application into two parts. The public key is a long integer which may consist of even a million digits!</p><p>Polycarpus needs to find such a way to cut the public key into two nonempty parts, that the first (left) part is divisible by <span class=\"tex-span\"><i>a</i></span> as a separate number, and the second (right) part is divisible by <span class=\"tex-span\"><i>b</i></span> as a separate number. Both parts should be <span class=\"tex-font-style-underline\">positive</span> integers that have no leading zeros. Polycarpus knows values <span class=\"tex-span\"><i>a</i></span> and <span class=\"tex-span\"><i>b</i></span>.</p><p>Help Polycarpus and find any suitable method to cut the public key.</p></div>",
+        "tags": [
+            "brute force",
+            "math",
+            "number theory",
+            "strings"
+        ],
+        "difficulty": "1700",
+        "constraints": "<div class=\"input-specification\"><div class=\"section-title\">Input</div><p>The first line of the input contains the public key of the messenger — an integer without leading zeroes, its length is in range from <span class=\"tex-span\">1</span> to <span class=\"tex-span\">10<sup class=\"upper-index\">6</sup></span> digits. The second line contains a pair of space-separated positive integers <span class=\"tex-span\"><i>a</i></span>, <span class=\"tex-span\"><i>b</i></span> (<span class=\"tex-span\">1 ≤ <i>a</i>, <i>b</i> ≤ 10<sup class=\"upper-index\">8</sup></span>).</p></div>"
+    }
+]
